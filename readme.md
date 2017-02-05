@@ -19,8 +19,7 @@ npm run web
 ```
 
 **`web-vendor`** builds webpack's shared-dll which massively increase rebuild time for hot-reloading our code.
-
-*Under **200ms** in my machine, which is quite close to React Native's rebuild.*
+*(Under* **200ms** *in my machine, which is quite close to React Native's rebuild).*
 
 ## Run modes
 ```
