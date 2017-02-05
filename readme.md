@@ -5,7 +5,7 @@
 [react-universal-ui-url]: https://npmjs.org/package/react-universal-ui
 
 ## Overview
-####*Run your [React Native][react-native-url] App run on both Native (iOs, Android) and Web**
+####*Run your [React Native][react-native-url] App on both Native (iOs, Android) and Web**
 
 Extending [React Native][react-native-url]'s initial structure using [react-native-web][react-native-web-url] and UI components form [react-universal-ui][react-universal-ui-url].
 
