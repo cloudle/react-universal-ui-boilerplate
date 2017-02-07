@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { colors } from '../utils';
-import * as routerActions from '../store/action/nativeRouter';
 import { NavigationExperimental } from 'react-universal-ui';
 const { Header: NavigationHeader } = NavigationExperimental;
 import NavigationBackButton from './NavigationBackButton';
@@ -30,7 +29,7 @@ export default class Header extends Component {
 }
 
 function onNavigateBack () {
-	routerActions.pop();
+	console.log("Back!");
 }
 
 const styles = StyleSheet.create({
