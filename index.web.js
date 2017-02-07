@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import React, { Component } from 'react';
 import ReactNative, { View, Text, AsyncStorage } from 'react-native';
-import app from './src/app';
+import app from './src/entry';
 
 import { AppContainer } from 'react-hot-loader';
 

@@ -14,8 +14,11 @@
     "babel-polyfill": "^6.22.0",
     "react": "~15.4.0-rc.4",
     "react-native": "0.41.1",
+    "react-native-drawer": "^2.3.0",
     "react-native-web": "0.0.69",
-    "react-universal-ui": "0.0.25"
+    "react-redux": "^5.0.2",
+    "react-universal-ui": "0.0.25",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",
@@ -31,6 +34,7 @@
     "json-loader": "^0.5.4",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-test-renderer": "~15.4.0-rc.4",
+    "redux-logger": "^2.8.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
   },

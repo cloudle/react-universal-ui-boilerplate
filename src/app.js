@@ -1,56 +1,73 @@
 import React, { Component } from 'react';
-import {
-	StatusBar,
-	View,
-	Text,
-	StyleSheet
-} from 'react-native';
+import { AsyncStorage, View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { NavigationExperimental } from 'react-universal-ui';
+import Drawer from 'react-native-drawer';
 
-import { Button, utils } from 'react-universal-ui';
-const { isIos, isAndroid } = utils;
+import Menu from './share/Menu';
+import NavigationHeader from './share/NavigationHeader';
 
-export default class app extends Component {
-  render() {
-    return <View style={styles.container}>
-      <Text style={styles.welcome}>
-        Welcome to React Native!
-      </Text>
-      <Text style={styles.instructions}>
-        To get started, edit src/app.js
-      </Text>
-      <Text style={styles.instructions}>
-        Press Cmd+R to reload,{'\n'}
-        Cmd+D or shake for dev menu
-      </Text>
-      <Button
-        wrapperStyle={{backgroundColor: '#00bcd4', width: 120}}
-        title="Click me!!" onPress={() => alert("Yay!")}/>
-    </View>
-  }
+@connect(({router}) => {
+	return {
+		router,
+	}
+})
+
+export default class App extends Component {
+
+	async componentWillMount () {
+		let token = await AsyncStorage.getItem('sysConfig');
+		console.log(token);
+	}
+
+	render () {
+		return <Drawer
+			type="overlay"
+			side="right"
+			negotiatePan={true}
+			panOpenMask={0.2}
+			tapToClose={true}
+			openDrawerOffset={0.2}
+			content={<Menu/>}
+			tweenHandler={drawerTween}>
+
+			<NavigationExperimental.CardStack
+				style={styles.navigator}
+				navigationState={this.props.router}
+				renderScene={this::renderScene}
+				renderHeader={this::renderHeader}
+				gestureResponseDistance={50}
+				onNavigateBack={() => console.log('Back..')}/>
+		</Drawer>
+	}
+}
+
+function renderScene (props) {
+	const Scene = props.scene.route.component;
+	return <Scene/>
+}
+
+function renderHeader (sceneProps) {
+	return <NavigationHeader {...sceneProps}/>
+}
+
+function drawerTween (ratio, side = 'left') {
+	return {
+		main: { opacity:(2-ratio)/1.2 },
+		drawer: {
+			shadowColor: '#000000',
+			shadowOpacity: 0.1 + (ratio * 0.3),
+			shadowRadius: ratio * 60,
+			elevation: ratio * 50,
+		}
+	}
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+	drawer: {
+		backgroundColor: '#000',
+	},
+	navigator: {
 
-if (isIos) {
-	StatusBar.setBarStyle('light-content', true);
-} else if (isAndroid) {
-	StatusBar.setBackgroundColor('transparent');
-	StatusBar.setTranslucent(true);
-}
+	}
+});
