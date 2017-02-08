@@ -10,13 +10,14 @@ const store = configureStore();
 
 render = Component => {
 	const rootEl = document.getElementById('root');
-
-	ReactNative.render(
-		<AppContainer>
-			<Component store={store}/>
-		</AppContainer>,
-		rootEl
-	);
+	setTimeout(() => {
+		ReactNative.render(
+			<AppContainer>
+				<Component store={store}/>
+			</AppContainer>,
+			rootEl
+		);
+	}, 0);
 };
 
 render(app);

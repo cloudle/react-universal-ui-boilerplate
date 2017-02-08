@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { AsyncStorage, View, Text, StyleSheet } from 'react-native';
-import { connect, Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 
+import { connect } from 'react-redux';
 import { NavigationExperimental } from 'react-universal-ui';
 import Drawer from 'react-native-drawer';
 import Menu from './share/Menu';
 import NavigationHeader from './share/NavigationHeader';
-import Welcome from './scenes/welcome';
 import * as appActions from './store/action/app';
 
 export default function AppContainer ({store}) {
@@ -28,7 +28,8 @@ export class App extends Component {
 	}
 
 	render () {
-		// console.log(this.props.router);
+		const navigationState = this.props.router;
+
 		return <Drawer
 			type="overlay"
 			side="right"
@@ -41,7 +42,7 @@ export class App extends Component {
 
 			<NavigationExperimental.CardStack
 				style={styles.navigator}
-				navigationState={{routes: [{key: 'welcome', component: Welcome}], index: 0}}
+				navigationState={navigationState}
 				renderScene={this::renderScene}
 				renderHeader={this::renderHeader}
 				gestureResponseDistance={50}

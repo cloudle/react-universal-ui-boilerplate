@@ -18,6 +18,7 @@ let plugins = [
 	new DefinePlugin({
 		ENV: JSON.stringify(env)
 	}),
+	new webpack.optimize.OccurrenceOrderPlugin(),
 	new webpack.DllReferencePlugin({
 		context: '.',
 		manifest: require('./web/vendor-manifest.json')
