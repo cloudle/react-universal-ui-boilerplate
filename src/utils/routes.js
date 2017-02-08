@@ -1,12 +1,15 @@
 import Welcome from '../scenes/welcome';
 import Login from '../scenes/login';
 
-export const initialRoute = {
+export let welcome = {
 	key: 'welcome',
 	component: Welcome,
 };
 
-export const routes = [
-	initialRoute,
-	{ key: 'login', component: Login },
-];
+export let login = {
+	key: 'login',
+	component: Login,
+	hideNavigation: true
+};
+
+export let initialRoute = login;

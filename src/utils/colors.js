@@ -1,6 +1,7 @@
 import tinyColor from 'tinycolor2';
 
-const main = '#F0871A';
+// const main = '#F0871A';
+const main = '#00bcd4';
 const lighterMain = tinyColor(main).lighten(15).toHexString();
 const darkerMain = tinyColor(main).darken(10).toHexString();
 

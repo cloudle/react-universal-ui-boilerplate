@@ -1,30 +1,26 @@
 import * as Actions from './actions';
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
-import logger from 'redux-logger';
 
-import appReducer from './reducer/app';
-import { utils } from 'react-universal-ui';
+import reducers from './reducers';
 
-import { initialRoute, routes } from '../utils';
+const DEVTOOLS = '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__',
+	composeEnhancers = module.hot && window[DEVTOOLS] || compose;
 
-const initialRouterState = {
-	routes: [initialRoute],
-};
+export default function configureStore (initialState) {
+	const enhancers = composeEnhancers(
+		//...
+	);
 
-const routeReducer = utils.nativeRouteReducer(
-	(state = initialRouterState, action) => {
-		switch (action.type) {
-			default:
-				return state;
-		}
+	const store = initialState
+		? createStore(reducers, initialState, enhancers)
+		: createStore(reducers, enhancers);
+
+	if (module.hot) {
+		module.hot.accept('./reducers', () => {
+			const nextRootReducer = require('./reducers').default; // eslint-disable-line global-require
+			store.replaceReducer(nextRootReducer);
+		});
 	}
-);
 
-const reducers = combineReducers({
-	app: appReducer,
-	router: routeReducer,
-});
-
-export default compose(
-
-)(createStore)(reducers);
+	return store;
+}

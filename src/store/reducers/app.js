@@ -7,7 +7,7 @@ const initialState = {
 export default function (state = initialState, action) {
 	switch (action.type) {
 		case Actions.IncreaseCounter:
-			return {...state, counter: state.conter + action.volume};
+			return {...state, counter: state.counter + action.volume};
 		default:
 			return state;
 	}

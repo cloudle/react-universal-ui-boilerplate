@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
 import { AsyncStorage, View, Text, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
+
 import { NavigationExperimental } from 'react-universal-ui';
 import Drawer from 'react-native-drawer';
-
 import Menu from './share/Menu';
 import NavigationHeader from './share/NavigationHeader';
+import Welcome from './scenes/welcome';
+import * as appActions from './store/action/app';
 
-@connect(({router}) => {
+export default function AppContainer ({store}) {
+	return <Provider store={store}>
+		<App/>
+	</Provider>
+}
+
+@connect(({router, app}) => {
 	return {
 		router,
+		counter: app.counter,
 	}
 })
 
-export default class App extends Component {
-
+export class App extends Component {
 	async componentWillMount () {
 		let token = await AsyncStorage.getItem('sysConfig');
-		console.log(token);
 	}
 
 	render () {
+		// console.log(this.props.router);
 		return <Drawer
 			type="overlay"
 			side="right"
@@ -33,7 +41,7 @@ export default class App extends Component {
 
 			<NavigationExperimental.CardStack
 				style={styles.navigator}
-				navigationState={this.props.router}
+				navigationState={{routes: [{key: 'welcome', component: Welcome}], index: 0}}
 				renderScene={this::renderScene}
 				renderHeader={this::renderHeader}
 				gestureResponseDistance={50}
@@ -43,12 +51,14 @@ export default class App extends Component {
 }
 
 function renderScene (props) {
-	const Scene = props.scene.route.component;
-	return <Scene/>
+		const Scene = props.scene.route.component;
+		return <Scene/>
 }
 
 function renderHeader (sceneProps) {
-	return <NavigationHeader {...sceneProps}/>
+	if (!sceneProps.scene.route.hideNavigation) {
+		return <NavigationHeader {...sceneProps}/>
+	}
 }
 
 function drawerTween (ratio, side = 'left') {

@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 
 import { Button } from 'react-universal-ui';
+import * as appActions from '../store/action/app';
+
+@connect(({app}) => {
+	return {
+		counter: app.counter,
+	}
+})
 
 export default class app extends Component {
 	render() {
@@ -18,7 +26,9 @@ export default class app extends Component {
 			</Text>
 			<Button
 				wrapperStyle={{backgroundColor: '#00bcd4', width: 120}}
-				title="Click me!!" onPress={() => console.log("Yay!")}/>
+				title="Click me!" onPress={() => {
+					this.props.dispatch(appActions.increaseCounter());
+				}}/>
 		</View>
 	}
 }
@@ -28,7 +38,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
 	},
 	welcome: {
 		fontSize: 20,

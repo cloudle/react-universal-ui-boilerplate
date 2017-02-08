@@ -24,7 +24,6 @@ function renderHeader () {
 	</View>
 }
 
-
 function renderAccount () {
 	return <View style={styles.headingAccount}>
 		<Text style={styles.headingText}>Cloud Le</Text>
