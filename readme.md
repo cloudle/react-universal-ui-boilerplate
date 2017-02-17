@@ -11,8 +11,8 @@ Extending [React Native][react-native-url]'s initial structure using [react-nati
 
 ## Usage
 ```
-git clone https://github.com/cloudle/react-wings-boilerplate.git
-cd react-wings-boilerplate
+git clone https://github.com/cloudle/react-universal-ui-boilerplate.git
+cd react-universal-ui-boilerplate
 npm install
 npm run web-vendor
 npm run web
