@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
 	heading: {
 		flexDirection: 'row',
 		backgroundColor: tinyColor(colors.main).darken(5).toHexString(),
-		height: 120,
+		height: 150,
 	},
 	headingAvatar: {
 		justifyContent: 'center',

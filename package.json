@@ -12,12 +12,13 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.22.0",
-    "react": "~15.4.0-rc.4",
+    "react": "^15.4.2",
     "react-native": "0.41.1",
     "react-native-drawer": "^2.3.0",
-    "react-native-web": "0.0.69",
+    "react-native-vector-icons": "github:cloudle/react-native-vector-icons",
+    "react-native-web": "0.0.70",
     "react-redux": "^5.0.2",
-    "react-universal-ui": "0.0.29",
+    "react-universal-ui": "0.0.50",
     "redux": "^3.6.0"
   },
   "devDependencies": {

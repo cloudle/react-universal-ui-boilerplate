@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Image, View, ScrollView, Text, StyleSheet } from 'react-native';
-import { Button, Input } from 'react-universal-ui';
-
+import { Input, Button, utils } from 'react-universal-ui';
+const { appAction } = utils;
 import { connect } from 'react-redux';
+
 import { colors } from '../../utils';
 import { ScreenWidthPadding } from '../../utils/screen';
+import * as manager from './manager';
 
 @connect(({app}) => {
 	return {
-		counter: app.counter,
 		localize: app.localize,
 	}
 })
@@ -16,21 +17,24 @@ import { ScreenWidthPadding } from '../../utils/screen';
 export default class LoginScene extends Component {
   render () {
     return <ScrollView contentContainerStyle={styles.container}>
-	    <Image
-		    resizeMode={Image.resizeMode.contain}
-		    style={styles.appIcon}
-		    source={require('./beep.png')}/>
+      <Image
+        resizeMode={Image.resizeMode.contain}
+        style={styles.appIcon}
+        source={require('./beep.png')}/>
 
-	    <Text style={styles.loginText}>
+      <Text style={styles.loginText}>
 		    {this.props.localize.titles.signIn}
-	    </Text>
+      </Text>
 
-	    <View style={styles.formWrapper}>
-		    <Input floatingLabel={this.props.localize.placeholders.userAccount}
-		           ref="username" maxLength={128}/>
-		    <Input floatingLabel={this.props.localize.placeholders.password}
-		           ref="password" password={true}/>
-	    </View>
+      <View style={styles.formWrapper}>
+        <Input floatingLabel={this.props.localize.placeholders.userAccount}
+               ref="username" maxLength={128}/>
+        <Input floatingLabel={this.props.localize.placeholders.password}
+               wrapperStyle={{borderBottomWidth: 0}}
+               underLineStyle={{backgroundColor: '#fca638', bottom: 0}}
+               secureTextEntry={true}
+               ref="password" password={true}/>
+      </View>
 
 	    <Text style={styles.forgotPasswordText}>
 		    {this.props.localize.titles.forgotPassword}
@@ -38,17 +42,19 @@ export default class LoginScene extends Component {
 
 	    <View style={styles.commandWrapper}>
 		    <Button
+			    onPress={this::manager.navigateRegister}
 			    wrapperStyle={[styles.buttonWrapper, styles.registerButton]}
-			    title={this.props.localize.titles.register}/>
+			    title={this.props.localize.titles.register}
+			    raise={false}/>
 		    <Button
+			    onPress={this::manager.login}
 			    wrapperStyle={[styles.buttonWrapper, styles.loginButton]}
 			    textStyle={{color: '#444444', fontWeight: '500'}}
-			    rippleColor="#222222"
+			    raise={false}
 			    title={this.props.localize.titles.login}/>
 	    </View>
 
-	    <Text
-		    style={styles.supportText}>
+	    <Text style={styles.supportText}>
 		    {this.props.localize.titles.support}
 	    </Text>
     </ScrollView>
@@ -56,12 +62,12 @@ export default class LoginScene extends Component {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: colors.main,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
+  container: {
+	  flex: 1,
+    backgroundColor: colors.main,
+	  justifyContent: 'center',
+	  alignItems: 'center',
+  },
 	appIcon: {
 		width: 300, height: 100,
 		resizeMode: Image.resizeMode.contain,
@@ -74,14 +80,14 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 	formWrapper: {
-		width: ScreenWidthPadding(40, 280),
+		width: ScreenWidthPadding(40, 260),
 		backgroundColor: 'white',
 		borderRadius: 2,
 		marginBottom: 10,
 		overflow: 'hidden',
 	},
 	commandWrapper: {
-		width: ScreenWidthPadding(40, 290),
+		width: ScreenWidthPadding(40, 270),
 		flexDirection: 'row'
 	},
 	errorText: {

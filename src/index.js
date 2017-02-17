@@ -1,39 +1,51 @@
 import React, { Component } from 'react';
-import { AsyncStorage, View, Text, StyleSheet } from 'react-native';
+import { AsyncStorage, StatusBar, TouchableWithoutFeedback, View, Text, StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
 
 import { connect } from 'react-redux';
-import { NavigationExperimental } from 'react-universal-ui';
+import { NavigationExperimental, Modal, utils } from 'react-universal-ui';
 import Drawer from 'react-native-drawer';
 import Menu from './share/Menu';
 import NavigationHeader from './share/NavigationHeader';
 import * as appActions from './store/action/app';
 
-export default function AppContainer ({store}) {
-	return <Provider store={store}>
-		<App/>
-	</Provider>
-}
+const { nativeRouteAction } = utils;
+
+import tinyColor from 'tinycolor2';
+global.tinyColor = tinyColor;
+
+const { isIos, isAndroid } = utils;
 
 @connect(({router, app}) => {
 	return {
 		router,
 		counter: app.counter,
+		user: app.user,
 	}
 })
 
 export class App extends Component {
 	async componentWillMount () {
+		if (isIos) {
+			StatusBar.setBarStyle('light-content', true);
+		} else if (isAndroid) {
+			StatusBar.setBackgroundColor('transparent');
+			StatusBar.setTranslucent(true);
+		}
+
 		let token = await AsyncStorage.getItem('sysConfig');
 	}
 
 	render () {
-		const navigationState = this.props.router;
+		const navigationState = this.props.router,
+			activeRoute = navigationState.routes[navigationState.index],
+			transitionDirection = activeRoute.transitionDirection || 'horizontal';
 
 		return <Drawer
 			type="overlay"
 			side="right"
 			negotiatePan={true}
+			disabled={!this.props.user.id}
 			panOpenMask={0.2}
 			tapToClose={true}
 			openDrawerOffset={0.2}
@@ -41,19 +53,26 @@ export class App extends Component {
 			tweenHandler={drawerTween}>
 
 			<NavigationExperimental.CardStack
+				direction={transitionDirection}
 				style={styles.navigator}
 				navigationState={navigationState}
 				renderScene={this::renderScene}
 				renderHeader={this::renderHeader}
 				gestureResponseDistance={50}
-				onNavigateBack={() => console.log('Back..')}/>
+				onNavigateBack={() => this.props.dispatch(nativeRouteAction.pop())}/>
+
+			<Modal/>
 		</Drawer>
 	}
 }
 
 function renderScene (props) {
-		const Scene = props.scene.route.component;
-		return <Scene/>
+	const activeRoute = props.scene.route,
+		Scene = activeRoute.component;
+
+	return <View style={[styles.sceneWrapper, activeRoute.style]}>
+		<Scene/>
+	</View>
 }
 
 function renderHeader (sceneProps) {
@@ -64,7 +83,9 @@ function renderHeader (sceneProps) {
 
 function drawerTween (ratio, side = 'left') {
 	return {
-		main: { opacity:(2-ratio)/1.2 },
+		main: {
+			right: ratio * 100,
+		},
 		drawer: {
 			shadowColor: '#000000',
 			shadowOpacity: 0.1 + (ratio * 0.3),
@@ -79,6 +100,15 @@ const styles = StyleSheet.create({
 		backgroundColor: '#000',
 	},
 	navigator: {
-
+		flex: 1,
+	},
+	sceneWrapper: {
+		flex: 1,
 	}
 });
+
+export default function AppContainer ({store}) {
+	return <Provider store={store}>
+		<App/>
+	</Provider>
+}

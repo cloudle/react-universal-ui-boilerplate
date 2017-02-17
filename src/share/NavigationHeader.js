@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 
 import { colors } from '../utils';
-import { NavigationExperimental } from 'react-universal-ui';
-const { Header: NavigationHeader } = NavigationExperimental;
+import { NavigationExperimental, utils } from 'react-universal-ui';
 import NavigationBackButton from './NavigationBackButton';
+
+const { Header: NavigationHeader } = NavigationExperimental;
+const { nativeRouteAction } = utils;
+
+@connect(({app}) => {
+	return {
+		localize: app.localize,
+	}
+})
 
 export default class Header extends Component {
 	render () {
@@ -29,7 +38,7 @@ export default class Header extends Component {
 }
 
 function onNavigateBack () {
-	console.log("Back!");
+	this.props.dispatch(nativeRouteAction.pop());
 }
 
 const styles = StyleSheet.create({
