@@ -13,7 +13,7 @@ module.exports = {
 			'babel-polyfill',
 			'react', 'react-dom',
 			'react-native-web',
-			'react-router', 'react-router-addons-controlled', 'history',
+			'redux', 'react-redux',
 			'react-native-vector-icons/FontAwesome',
 			'react-native-vector-icons/Ionicons',
 			'react-native-vector-icons/glyphmaps/MaterialIcons.json',
