@@ -15,7 +15,7 @@
     "react": "~15.4.0-rc.4",
     "react-native": "0.41.1",
     "react-native-web": "0.0.69",
-    "react-universal-ui": "0.0.25"
+    "react-universal-ui": "0.0.51"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",
