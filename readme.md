@@ -1,11 +1,11 @@
-# React Wings Boilerplate
+# React Universal UI  Boilerplate
 
 [react-native-url]: https://facebook.github.io/react-native/
 [react-native-web-url]: https://github.com/necolas/react-native-web
 [react-universal-ui-url]: https://npmjs.org/package/react-universal-ui
 
 ## Overview
-####*Run your [React Native][react-native-url] App on both Native (iOs, Android) and Web**
+#### A boilerplate for cross-platform React project - which let you run your [React Native][react-native-url] App on both Native (iOs, Android) and Web
 
 Extending [React Native][react-native-url]'s initial structure using [react-native-web][react-native-web-url] and UI components form [react-universal-ui][react-universal-ui-url].
 
