@@ -1,114 +1,56 @@
 import React, { Component } from 'react';
-import { AsyncStorage, StatusBar, TouchableWithoutFeedback, View, Text, StyleSheet } from 'react-native';
-import { Provider } from 'react-redux';
-
+import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationExperimental, Modal, utils } from 'react-universal-ui';
-import Drawer from 'react-native-drawer';
-import Menu from './share/Menu';
-import NavigationHeader from './share/NavigationHeader';
-import * as appActions from './store/action/app';
 
-const { nativeRouteAction } = utils;
+import { Button } from 'react-universal-ui';
+import * as appActions from 'store/action/app';
 
-import tinyColor from 'tinycolor2';
-global.tinyColor = tinyColor;
-
-const { isIos, isAndroid } = utils;
-
-@connect(({router, app}) => {
+@connect(({app}) => {
 	return {
-		router,
 		counter: app.counter,
-		user: app.user,
 	}
 })
 
-export class App extends Component {
-	async componentWillMount () {
-		if (isIos) {
-			StatusBar.setBarStyle('light-content', true);
-		} else if (isAndroid) {
-			StatusBar.setBackgroundColor('transparent');
-			StatusBar.setTranslucent(true);
-		}
-
-		let token = await AsyncStorage.getItem('sysConfig');
-	}
-
-	render () {
-		const navigationState = this.props.router,
-			activeRoute = navigationState.routes[navigationState.index],
-			transitionDirection = activeRoute.transitionDirection || 'horizontal';
-
-		return <Drawer
-			type="overlay"
-			side="right"
-			negotiatePan={true}
-			disabled={!this.props.user.id}
-			panOpenMask={0.2}
-			tapToClose={true}
-			openDrawerOffset={0.2}
-			content={<Menu/>}
-			tweenHandler={drawerTween}>
-
-			<NavigationExperimental.CardStack
-				direction={transitionDirection}
-				style={styles.navigator}
-				navigationState={navigationState}
-				renderScene={this::renderScene}
-				renderHeader={this::renderHeader}
-				gestureResponseDistance={50}
-				onNavigateBack={() => this.props.dispatch(nativeRouteAction.pop())}/>
-
-			<Modal/>
-		</Drawer>
-	}
-}
-
-function renderScene (props) {
-	const activeRoute = props.scene.route,
-		Scene = activeRoute.component;
-
-	return <View style={[styles.sceneWrapper, activeRoute.style]}>
-		<Scene/>
-	</View>
-}
-
-function renderHeader (sceneProps) {
-	if (!sceneProps.scene.route.hideNavigation) {
-		return <NavigationHeader {...sceneProps}/>
-	}
-}
-
-function drawerTween (ratio, side = 'left') {
-	return {
-		main: {
-			right: ratio * 100,
-		},
-		drawer: {
-			shadowColor: '#000000',
-			shadowOpacity: 0.1 + (ratio * 0.3),
-			shadowRadius: ratio * 60,
-			elevation: ratio * 50,
-		}
+export default class app extends Component {
+	render() {
+		return <View style={styles.container}>
+			<Text style={styles.welcome}>
+				Welcome to React Native!
+			</Text>
+			<Text style={styles.instructions}>
+				To get started, edit src/app.js
+			</Text>
+			<Text style={styles.instructions}>
+				Press Cmd+R to reload,{'\n'}
+				Cmd+D or shake for dev menu
+			</Text>
+			<Button
+				wrapperStyle={styles.counterButton}
+				title={"Click me! " + this.props.counter} onPress={() => {
+					this.props.dispatch(appActions.increaseCounter());
+				}}/>
+		</View>
 	}
 }
 
 const styles = StyleSheet.create({
-	drawer: {
-		backgroundColor: '#000',
-	},
-	navigator: {
+	container: {
 		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
-	sceneWrapper: {
-		flex: 1,
+	welcome: {
+		fontSize: 20,
+		textAlign: 'center',
+		margin: 10,
+	},
+	instructions: {
+		textAlign: 'center',
+		color: '#333333',
+		marginBottom: 5,
+	},
+	counterButton: {
+		backgroundColor: '#00bcd4',
+		width: 120, marginTop: 10,
 	}
 });
-
-export default function AppContainer ({store}) {
-	return <Provider store={store}>
-		<App/>
-	</Provider>
-}
