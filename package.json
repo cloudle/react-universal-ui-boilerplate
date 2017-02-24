@@ -17,9 +17,7 @@
     "react-native-drawer": "^2.3.0",
     "react-native-vector-icons": "github:cloudle/react-native-vector-icons",
     "react-native-web": "0.0.70",
-    "react-redux": "^5.0.2",
-    "react-universal-ui": "0.0.64",
-    "redux": "^3.6.0"
+    "react-universal-ui": "0.0.73"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",

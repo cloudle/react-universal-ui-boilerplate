@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
+console.log("Building common chunks... Grab a cup of coffee while this is running ;)");
+
 const devVendors = [
 	'react-hot-loader',
 	'sockjs-client',
