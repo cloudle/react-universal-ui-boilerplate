@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const env = process.env.ENV || 'dev';
 const port = process.env.PORT || 3000;
@@ -19,16 +20,17 @@ let plugins = [
 		ENV: JSON.stringify(env)
 	}),
 	new webpack.optimize.OccurrenceOrderPlugin(),
-	new webpack.DllReferencePlugin({
-		context: '.',
-		manifest: require('./web/vendor-manifest.json')
-	}),
+	// new ProgressBarPlugin(),
 ];
 
 if (env === 'dev') {
 	plugins.push(new webpack.HotModuleReplacementPlugin());
 	plugins.push(new webpack.NamedModulesPlugin());
 	plugins.push(new webpack.NoEmitOnErrorsPlugin());
+	plugins.push(	new webpack.DllReferencePlugin({
+		context: '.',
+		manifest: require('./web/vendor-manifest.json')
+	}));
 }
 
 module.exports = {
