@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-
 import { Button } from 'react-universal-ui';
-import * as appActions from 'store/action/app';
 
-@connect(({app}) => {
+import * as appActions from './store/action/app';
+
+type Props = {
+	counter: string,
+	dispatch: Function,
+};
+
+@connect(({ app }) => {
 	return {
 		counter: app.counter,
-	}
+	};
 })
 
-export default class app extends Component {
+export default class app extends Component<any, Props, any> {
+	props: Props;
+
 	render() {
 		return <View style={styles.container}>
 			<Text style={styles.welcome}>
@@ -26,10 +33,10 @@ export default class app extends Component {
 			</Text>
 			<Button
 				wrapperStyle={styles.counterButton}
-				title={"Click me! " + this.props.counter} onPress={() => {
+				title={`Click me ${this.props.counter}`} onPress={() => {
 					this.props.dispatch(appActions.increaseCounter());
 				}}/>
-		</View>
+		</View>;
 	}
 }
 

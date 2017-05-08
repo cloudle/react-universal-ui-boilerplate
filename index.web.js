@@ -6,9 +6,10 @@ import { AppContainer } from 'react-hot-loader';
 import app from './src';
 import configureStore from './src/store';
 import * as appActions from './src/store/action/app';
+
 const store = configureStore();
 
-render = Component => {
+const render = Component => {
 	const rootEl = document.getElementById('root');
 	setTimeout(() => {
 		ReactNative.render(
