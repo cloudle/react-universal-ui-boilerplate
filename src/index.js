@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-universal-ui';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import * as appActions from './store/action/app';
 
 type Props = {
-	counter: string,
-	dispatch: Function,
+	counter?: string,
+	dispatch?: Function,
 };
 
 @connect(({ app }) => {
@@ -20,9 +21,13 @@ export default class app extends Component<any, Props, any> {
 	props: Props;
 
 	render() {
+		const beerIcon = <Icon
+			name="ios-beer-outline"
+			style={styles.buttonIcon}/>;
+
 		return <View style={styles.container}>
 			<Text style={styles.welcome}>
-				Welcome to React Native!
+				Welcome to React Native!!
 			</Text>
 			<Text style={styles.instructions}>
 				To get started, edit src/app.js
@@ -32,12 +37,16 @@ export default class app extends Component<any, Props, any> {
 				Cmd+D or shake for dev menu
 			</Text>
 			<Button
-				wrapperStyle={styles.counterButton}
-				title={`Click me ${this.props.counter}`} onPress={() => {
-					this.props.dispatch(appActions.increaseCounter());
-				}}/>
+				wrapperStyle={styles.buttonWrapper}
+				title={`Click me! ${this.props.counter}`}
+				icon={beerIcon}
+				onPress={this.increaseCounter}/>
 		</View>;
 	}
+
+	increaseCounter = () => {
+		this.props.dispatch(appActions.increaseCounter());
+	};
 }
 
 const styles = StyleSheet.create({
@@ -59,5 +68,14 @@ const styles = StyleSheet.create({
 	counterButton: {
 		backgroundColor: '#00bcd4',
 		width: 120, marginTop: 10,
-	}
+	},
+	buttonWrapper: {
+		backgroundColor: '#00bcd4',
+		width: 120,
+		marginTop: 20,
+	},
+	buttonIcon: {
+		fontSize: 28,
+		color: '#ffffff',
+	},
 });

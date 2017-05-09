@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
@@ -22,7 +24,7 @@ new WebpackDevServer(webpack(config), {
 	},
 	quiet: false,
 	noInfo: false,
-}).listen(port, '0.0.0.0', function (err, result) {
+}).listen(port, 'localhost', function (err, result) {
 	if (err) {
 		return console.log(err);
 	}

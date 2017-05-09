@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const path = require('path');
 const webpack = require('webpack');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
@@ -6,7 +8,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const env = process.env.ENV || 'dev';
 const port = process.env.PORT || 3000;
 const prod = env === 'prod';
-const publicPath = `http://0.0.0.0:${port}/`;
+const publicPath = `http://localhost:${port}/`;
 const entry = './index.web.js';
 
 const hot = [
