@@ -9,6 +9,7 @@
     "func-names": ["error", "never"],
     "no-tabs": "off",
     "no-shadow": "off",
+    "key-spacing": "off",
     "no-param-reassign": "off",
     "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
     "one-var": "off",

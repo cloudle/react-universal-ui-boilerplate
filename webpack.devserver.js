@@ -1,10 +1,11 @@
-/* eslint-disable */
-
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
+
 const port = process.env.PORT || 3000;
 const logMode = process.env.LOG;
+
+console.log(`A magical force.. is raising at localhost:${port} :p`);
 
 new WebpackDevServer(webpack(config), {
 	publicPath: config.output.publicPath,
@@ -24,10 +25,7 @@ new WebpackDevServer(webpack(config), {
 	},
 	quiet: false,
 	noInfo: false,
-}).listen(port, 'localhost', function (err, result) {
-	if (err) {
-		return console.log(err);
-	}
-
-	console.log('Listening at http://localhost:'+port);
+}).listen(port, 'localhost', (err, result) => {
+	if (err) console.log(err);
+	return true;
 });

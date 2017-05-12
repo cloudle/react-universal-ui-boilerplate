@@ -4690,9 +4690,9 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react-universal-ui@0.0.88:
-  version "0.0.88"
-  resolved "https://registry.yarnpkg.com/react-universal-ui/-/react-universal-ui-0.0.88.tgz#6a41aa7e438db85649be8e7b077470127214ab39"
+react-universal-ui@0.0.91:
+  version "0.0.91"
+  resolved "https://registry.yarnpkg.com/react-universal-ui/-/react-universal-ui-0.0.91.tgz#1961e1317c749abb9b2b6b37a81972bc6660aea8"
   dependencies:
     react-redux "^5.0.3"
     redux "^3.6.0"
