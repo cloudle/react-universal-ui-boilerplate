@@ -12,7 +12,7 @@ const entry = './index.web.js';
 
 const hot = [
 	'react-hot-loader/patch',
-	`webpack-dev-server/client?+${publicPath}`,
+	`webpack-dev-server/client?${publicPath}`,
 	'webpack/hot/only-dev-server',
 ];
 
