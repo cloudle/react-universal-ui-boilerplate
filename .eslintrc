@@ -8,6 +8,7 @@
   "rules": {
     "func-names": ["error", "never"],
     "no-tabs": "off",
+    "global-require": "off",
     "no-shadow": "off",
     "key-spacing": "off",
     "no-param-reassign": "off",

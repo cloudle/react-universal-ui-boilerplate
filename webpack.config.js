@@ -21,7 +21,9 @@ const plugins = [
 		ENV: JSON.stringify(env)
 	}),
 	new webpack.optimize.OccurrenceOrderPlugin(),
-	new ProgressBarPlugin(),
+	new ProgressBarPlugin({
+		width: 39, complete: ':', summary: false,
+	}),
 ];
 
 if (env === 'dev') {

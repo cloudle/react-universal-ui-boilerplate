@@ -9,7 +9,7 @@ import * as appActions from './src/store/action/app';
 
 const store = configureStore();
 
-const render = Component => {
+const render = (Component) => {
 	const rootEl = document.getElementById('root');
 	setTimeout(() => {
 		ReactNative.render(
@@ -23,7 +23,7 @@ const render = Component => {
 
 render(app);
 
-if(module.hot) {
+if (module.hot) {
 	module.hot.accept('./src', () => {
 		const nextApp = require('./src').default;
 		render(nextApp);
