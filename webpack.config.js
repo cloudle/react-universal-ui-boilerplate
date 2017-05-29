@@ -22,7 +22,7 @@ const plugins = [
 	}),
 	new webpack.optimize.OccurrenceOrderPlugin(),
 	new ProgressBarPlugin({
-		width: 39, complete: ':', summary: false,
+		width: 39, complete: '█', incomplete: '¦', summary: false,
 	}),
 ];
 
