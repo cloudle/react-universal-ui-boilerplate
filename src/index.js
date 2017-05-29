@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import { Button } from 'react-universal-ui';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -17,7 +17,7 @@ type Props = {
 	};
 })
 
-export default class app extends Component<any, Props, any> {
+class App extends Component {
 	props: Props;
 
 	render() {
@@ -27,7 +27,7 @@ export default class app extends Component<any, Props, any> {
 
 		return <View style={styles.container}>
 			<Text style={styles.welcome}>
-				Welcome to React Native!!
+				Welcome to React Native
 			</Text>
 			<Text style={styles.instructions}>
 				To get started, edit src/app.js
@@ -47,6 +47,16 @@ export default class app extends Component<any, Props, any> {
 	increaseCounter = () => {
 		this.props.dispatch(appActions.increaseCounter());
 	};
+}
+
+type ContainerProps = {
+	store: Object,
+};
+
+export default function AppContainer({ store }: ContainerProps) {
+	return <Provider store={store}>
+		<App/>
+	</Provider>;
 }
 
 const styles = StyleSheet.create({
