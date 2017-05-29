@@ -1,9 +1,9 @@
 /* eslint-disable */
-
 const path = require('path');
 const webpack = require('webpack');
+const colors = require('colors');
 
-console.log("Building common chunks... Grab a cup of coffee while this is running ;)");
+console.log('Building common chunks... Grab a cup of coffee while this is running ;)'.bgMagenta);
 
 const devVendors = [
 	'react-hot-loader',
