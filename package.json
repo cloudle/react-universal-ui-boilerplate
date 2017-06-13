@@ -16,8 +16,8 @@
     "react-native": "0.41.1",
     "react-native-drawer": "^2.3.0",
     "react-native-vector-icons": "github:cloudle/react-native-vector-icons",
-    "react-native-web": "0.0.98",
-    "react-universal-ui": "0.0.98"
+    "react-native-web": "0.0.101",
+    "react-universal-ui": "^0.1.26"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
