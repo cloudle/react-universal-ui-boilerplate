@@ -12,12 +12,12 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.22.0",
-    "react": "^15.5.4",
+    "react": "^15.6.1",
     "react-native": "0.41.1",
     "react-native-drawer": "^2.3.0",
     "react-native-vector-icons": "github:cloudle/react-native-vector-icons",
-    "react-native-web": "0.0.101",
-    "react-universal-ui": "^0.1.26"
+    "react-native-web": "^0.0.108",
+    "react-universal-ui": "^0.1.32"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -46,7 +46,7 @@
     "json-loader": "^0.5.4",
     "pretty-bytes": "^4.0.2",
     "progress-bar-webpack-plugin": "^1.9.3",
-    "react-dom": "^15.5.4",
+    "react-dom": "^15.6.1",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-test-renderer": "~15.4.0-rc.4",
     "redux-logger": "^2.8.1",
