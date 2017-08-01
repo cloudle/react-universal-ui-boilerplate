@@ -1,13 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const vendorManifest = require('./web/vendor-manifest.json');
 
 const env = process.env.ENV || 'dev';
 const port = process.env.PORT || 3000;
 const prod = env === 'prod';
-const publicPath = `http://localhost:${port}/`;
+const publicPath = '/';
 const entry = './index.web.js';
 
 const hot = [
@@ -21,6 +22,11 @@ const plugins = [
 		ENV: JSON.stringify(env)
 	}),
 	new webpack.optimize.OccurrenceOrderPlugin(),
+	new HtmlWebpackPlugin({
+		isProduction: prod,
+		template: 'index.ejs',
+		filename: 'index.html',
+	}),
 	new ProgressBarPlugin({
 		width: 39, complete: '█', incomplete: '¦', summary: false,
 	}),
@@ -38,7 +44,7 @@ if (env === 'dev') {
 
 module.exports = {
 	cache: true,
-	devtool: prod ? null : 'eval-source-map',
+	devtool: prod ? false : 'eval-source-map',
 	entry: {
 		app: prod ? [entry] : [...hot, entry]
 	},

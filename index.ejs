@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>React Wings Boilerplate</title>
+	<title>Distributor Portal</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="msapplication-tap-highlight" content="no">
@@ -11,26 +11,27 @@
 		body {
 			font-family: "Avenir Next",Nunito,"Helvetica Neue",Helvetica,sans-serif;
 			font-size: 14px;
-			color: #222222;
+			color: #888888; background-color: #1f2228;
 			font-weight: 400;
 			overflow: hidden;
 		}
-
-    #root {
-      display: flex;
-      position: absolute;
-      top: 0; left:0; bottom: 0; right: 0;
-    }
-
+		#root {
+			position: absolute;
+			top: 0; right: 0; bottom: 0; left: 0;
+			display: flex;
+		}
 		.touchable {
 			cursor: pointer;
+			user-select: none;
 		}
 	</style>
 </head>
 
 <body>
 	<div id="root"></div>
+
+  <%if (!htmlWebpackPlugin.options.isProduction) { %>
 	<script src="vendor.bundle.js"></script>
-	<script src="app.bundle.js"></script>
+  <% } %>
 </body>
 </html>

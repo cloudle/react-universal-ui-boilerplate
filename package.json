@@ -7,6 +7,7 @@
     "test": "jest",
     "web-vendor": "webpack --config webpack.vendor.config.js --progress",
     "web": "node webpack.devserver",
+    "web-bundle": "ENV=prod webpack --config webpack.config.js --progress",
     "ios": "react-native run-ios",
     "android": "react-native run-android"
   },
@@ -42,6 +43,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0",
     "file-loader": "^0.10.0",
+    "html-webpack-plugin": "^2.30.1",
     "jest": "18.1.0",
     "json-loader": "^0.5.4",
     "pretty-bytes": "^4.0.2",
