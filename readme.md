@@ -18,6 +18,13 @@ npm run web-vendor
 npm run web
 ```
 
+## Notes for Native run
+React native boilerplate code use vector-icons packages which need to link it's asset to native module.. so we'll need to run this as well:
+```
+react-native link
+```
+after it, we'll be able to safely run our app on native with `react-native run-ios` or `react-native run-android`
+
 **`web-vendor`** builds webpack's shared-dll which massively increase rebuild time for hot-reloading our code.
 *(Under* **200ms** *in my machine, which is quite close to React Native's rebuild).*
 
