@@ -4,8 +4,8 @@ import App from './src';
 import configureStore from './src/store';
 
 const store = configureStore();
-function appWithStore () {
-	return <App store={store}/>
+function appWithStore() {
+	return <App store={store}/>;
 }
 
 AppRegistry.registerComponent('app', () => appWithStore);
