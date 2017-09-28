@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import { Button } from 'react-universal-ui';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'universal-vector-icons/Ionicons';
 
 import * as appActions from './store/action/app';
 
