@@ -15,9 +15,7 @@ new WebpackDevServer(compiler, {
 	publicPath: config.output.publicPath,
 	contentBase: 'web',
 	hot: true,
-	historyApiFallback: {
-		index: 'app.html',
-	},
+	historyApiFallback: true,
 	stats: {
 		assets:         false,
 		colors:         true,
