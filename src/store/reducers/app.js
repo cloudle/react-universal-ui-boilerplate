@@ -12,4 +12,4 @@ export default appReducer((state = initialState, action) => {
 	default:
 		return state;
 	}
-})
+});
