@@ -51,8 +51,8 @@ module.exports = {
 	output: {
 		publicPath,
 		path: path.join(__dirname, 'web'),
-		filename: '[name].bundle.js',
-		chunkFilename: '[name].js'
+		filename: '[name].bundle-[hash].js',
+		chunkFilename: '[name].js',
 	},
 	resolve: {
 		alias: {
@@ -67,6 +67,7 @@ module.exports = {
 			{
 				test: /\.js?$/,
 				loaders: prod ? ['babel-loader'] : ['react-hot-loader/webpack', 'babel-loader'],
+				exclude: /node_modules\/idtoken-verifier/,
 			},
 			{ test: /\.css$/, loader: 'style-loader!css-loader' },
 			{
