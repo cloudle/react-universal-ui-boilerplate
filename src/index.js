@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Provider, connect } from 'react-redux';
-import { Button } from 'react-universal-ui';
+import { connect, ContextProvider, Button } from 'react-universal-ui';
 import Icon from 'universal-vector-icons/Ionicons';
 
 import * as appActions from './store/action/app';
@@ -54,9 +53,9 @@ type ContainerProps = {
 };
 
 export default function AppContainer({ store }: ContainerProps) {
-	return <Provider store={store}>
+	return <ContextProvider store={store}>
 		<App/>
-	</Provider>;
+	</ContextProvider>;
 }
 
 const styles = StyleSheet.create({
