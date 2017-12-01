@@ -16,7 +16,7 @@
     "react": "^16.0.0",
     "react-native": "0.48.4",
     "react-native-drawer": "^2.3.0",
-    "react-native-web": "^0.1.8",
+    "react-native-web": "^0.1.14",
     "react-universal-ui": "^0.1.60",
     "universal-vector-icons": "^4.4.1"
   },
