@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Distributor Portal</title>
+	<title>React Universal Boilerplate</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="msapplication-tap-highlight" content="no">
@@ -24,14 +24,36 @@
 			cursor: pointer;
 			user-select: none;
 		}
+
+		@font-face {
+			font-family: Material Icons;
+			src: url(MaterialIcons.ttf) format('truetype');
+		}
+
+		@font-face {
+			font-family: FontAwesome;
+			src: url(FontAwesome.ttf) format('truetype');
+		}
+
+		@font-face {
+			font-family: Ionicons;
+			src: url(Ionicons.ttf) format('truetype');
+		}
+
+		<% if (typeof initialStyles !== 'undefined') { %><%-initialStyles%><% } %>
 	</style>
 </head>
 
 <body>
-	<div id="root"></div>
+	<div id="root"><% if (typeof initialHtml !== 'undefined') { %><%-initialHtml%><% } %></div>
 
-  <%if (!htmlWebpackPlugin.options.isProduction) { %>
-	<script src="vendor.bundle.js"></script>
+  <%if (typeof htmlWebpackPlugin !== 'undefined' && !htmlWebpackPlugin.options.isProduction) { %>
+		<script src="/vendor.bundle.js"></script>
+  <% } %>
+
+  <% if (typeof serverSide !== 'undefined') { %>
+		<script src="http://localhost:3000/vendor.bundle.js"></script>
+		<script src="http://localhost:3000/app.js"></script>
   <% } %>
 </body>
 </html>

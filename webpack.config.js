@@ -8,7 +8,7 @@ const vendorManifest = require('./web/vendor-manifest.json');
 const env = process.env.ENV || 'dev';
 const port = process.env.PORT || 3000;
 const prod = env === 'prod';
-const publicPath = '/';
+const publicPath = 'http://localhost:3000/';
 const entry = './index.web.js';
 
 const hot = [
@@ -55,7 +55,7 @@ module.exports = {
 	output: {
 		publicPath,
 		path: path.join(__dirname, 'web'),
-		filename: '[name].bundle-[hash].js',
+		filename: prod ? '[name].bundle-[hash].js' : 'app.js',
 		chunkFilename: '[name].js',
 	},
 	resolve: {

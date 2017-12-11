@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { connect, ContextProvider, Button } from 'react-universal-ui';
-import Icon from 'universal-vector-icons/Ionicons';
+import { utils, connect, ContextProvider, Modal, Snackbar, Dropdown, } from 'react-universal-ui';
+import { Switch, Route, StaticRouter } from 'react-router';
+import { ConnectedRouter } from 'react-router-redux';
+
+import Icon from './components/vector-icons/Ionicons';
+import HomeScene from './scenes/home';
+import NotFoundScene from './scenes/notFound';
 
 import { store } from './store';
+import { history } from './store/reducers';
 import * as appActions from './store/action/app';
 
 type Props = {
+	ssrLocation?: string,
+	ssrContext?: Object,
 	counter?: string,
 	dispatch?: Function,
 };
@@ -21,41 +29,35 @@ class App extends Component {
 	props: Props;
 
 	render() {
-		const beerIcon = <Icon
-			name="ios-beer-outline"
-			style={styles.buttonIcon}/>;
+		const Router = utils.isServer ? StaticRouter : ConnectedRouter,
+			routerProps = utils.isServer ? {
+				location: this.props.ssrLocation,
+				context: this.props.ssrContext,
+			} : { history, };
 
 		return <View style={styles.container}>
-			<Text style={styles.welcome}>
-				Welcome to React Native
-			</Text>
-			<Text style={styles.instructions}>
-				To get started, edit src/app.js
-			</Text>
-			<Text style={styles.instructions}>
-				Press Cmd+R to reload,{'\n'}
-				Cmd+D or shake for dev menu
-			</Text>
-			<Button
-				wrapperStyle={styles.buttonWrapper}
-				title={`Click me! ${this.props.counter}`}
-				icon={beerIcon}
-				onPress={this.increaseCounter}/>
+			<Router {...routerProps}>
+				<Switch>
+					<Route exact path="/" component={HomeScene}/>
+					<Route component={NotFoundScene}/>
+				</Switch>
+			</Router>
+
+			<Modal/>
+			<Dropdown/>
+			<Snackbar/>
 		</View>;
 	}
-
-	increaseCounter = () => {
-		this.props.dispatch(appActions.increaseCounter());
-	};
 }
 
 type ContainerProps = {
-
+	ssrLocation?: string,
+	ssrContext?: Object,
 };
 
 export default function AppContainer(props: ContainerProps) {
 	return <ContextProvider store={store}>
-		<App/>
+		<App ssrLocation={props.ssrLocation} ssrContext={props.ssrContext}/>
 	</ContextProvider>;
 }
 
