@@ -40,6 +40,10 @@ if (env === 'dev') {
 		context: '.',
 		manifest: vendorManifest,
 	}));
+	plugins.push(new webpack.ContextReplacementPlugin(
+		/graphql-language-service-interface[\\/]dist$/,
+		new RegExp('^\\./.*\\.js$')
+	));
 }
 
 module.exports = {

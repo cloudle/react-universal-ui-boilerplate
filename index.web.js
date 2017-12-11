@@ -1,23 +1,25 @@
 import 'babel-polyfill';
-import React, { Component } from 'react';
-import { render as NativeRender, View, Text, AsyncStorage } from 'react-native';
+import React from 'react';
+import { AppRegistry } from 'react-native';
 import { AppContainer } from 'react-hot-loader';
 
 import app from './src';
-import configureStore from './src/store';
+import { store } from './src/store';
 import * as appActions from './src/store/action/app';
 
-const store = configureStore();
-
 const render = (Component) => {
-	const rootEl = document.getElementById('root');
 	setTimeout(() => {
-		NativeRender(
-			<AppContainer>
-				<Component store={store}/>
-			</AppContainer>,
-			rootEl
-		);
+		const App = () => {
+			return <AppContainer store={store}>
+				<Component/>
+			</AppContainer>;
+		};
+
+		AppRegistry.registerComponent('App', () => App);
+		AppRegistry.runApplication('App', {
+			initialProps: {},
+			rootTag: document.getElementById('root'),
+		});
 	}, 0);
 };
 

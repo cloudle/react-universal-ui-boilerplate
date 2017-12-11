@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { connect, ContextProvider, Button } from 'react-universal-ui';
 import Icon from 'universal-vector-icons/Ionicons';
 
+import { store } from './store';
 import * as appActions from './store/action/app';
 
 type Props = {
@@ -49,10 +50,10 @@ class App extends Component {
 }
 
 type ContainerProps = {
-	store: Object,
+
 };
 
-export default function AppContainer({ store }: ContainerProps) {
+export default function AppContainer(props: ContainerProps) {
 	return <ContextProvider store={store}>
 		<App/>
 	</ContextProvider>;

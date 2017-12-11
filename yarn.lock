@@ -5011,9 +5011,9 @@ react-native-drawer@^2.5.0:
     prop-types "^15.5.8"
     tween-functions "^1.0.1"
 
-react-native-web@^0.1.14:
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.1.14.tgz#23aba7abb49bce3fa205766deb9e13e23a4ce1eb"
+react-native-web@^0.1.16:
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.1.16.tgz#e0d1a43b3b59a8371cdb538c11088d206b29f2b1"
   dependencies:
     animated "^0.2.0"
     array-find-index "^1.0.2"
@@ -5158,9 +5158,9 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react-universal-ui@^0.1.60:
-  version "0.1.60"
-  resolved "https://registry.yarnpkg.com/react-universal-ui/-/react-universal-ui-0.1.60.tgz#b5595f018b253eba3380591d4e96b46d32f05c41"
+react-universal-ui@^0.1.67:
+  version "0.1.67"
+  resolved "https://registry.yarnpkg.com/react-universal-ui/-/react-universal-ui-0.1.67.tgz#eb93252129e7c3e0434cfa750efe7056b2c2ab47"
   dependencies:
     react-native-drawer "^2.5.0"
     react-redux "^5.0.6"
