@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const vendorManifest = require('./web/vendor-manifest.json');
 
 const env = process.env.ENV || 'dev';
 const port = process.env.PORT || 3000;
@@ -38,7 +37,7 @@ if (env === 'dev') {
 	plugins.push(new webpack.NoEmitOnErrorsPlugin());
 	plugins.push(new webpack.DllReferencePlugin({
 		context: '.',
-		manifest: vendorManifest,
+		manifest: require('./web/vendor-manifest.json'),
 	}));
 	plugins.push(new webpack.ContextReplacementPlugin(
 		/graphql-language-service-interface[\\/]dist$/,
