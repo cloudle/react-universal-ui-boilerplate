@@ -18,10 +18,10 @@
     "react": "^16.0.0",
     "react-native": "0.48.4",
     "react-native-drawer": "^2.3.0",
-    "react-native-web": "^0.3.0-rc.4",
+    "react-native-web": "^0.3.2",
     "react-router": "^4.2.0",
     "react-router-redux": "^5.0.0-alpha.8",
-    "react-universal-ui": "^0.1.71",
+    "react-universal-ui": "^0.1.78",
     "universal-vector-icons": "^4.4.1"
   },
   "devDependencies": {

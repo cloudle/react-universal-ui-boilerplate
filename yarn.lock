@@ -3183,9 +3183,9 @@ ini@~1.3.0:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.4.tgz#0537cb79daf59b59a1a517dff706c86ec039162e"
 
-inline-style-prefixer@^3.0.8:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-3.0.8.tgz#8551b8e5b4d573244e66a34b04f7d32076a2b534"
+inline-style-prefixer@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-4.0.0.tgz#30a03df1b346ba6b1fb8a812bc3c9dabef48022d"
   dependencies:
     bowser "^1.7.3"
     css-in-js-utils "^2.0.0"
@@ -5084,9 +5084,9 @@ react-native-drawer@^2.5.0:
     prop-types "^15.5.8"
     tween-functions "^1.0.1"
 
-react-native-web@^0.3.0-rc.4:
-  version "0.3.0-rc.4"
-  resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.3.0-rc.4.tgz#44e6e0dda3c53e94b15cd8f636bba23f9176896e"
+react-native-web@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.3.2.tgz#869de266ab75145229d1df8dfb95d60c1410b986"
   dependencies:
     array-find-index "^1.0.2"
     create-react-class "^15.6.2"
@@ -5094,7 +5094,7 @@ react-native-web@^0.3.0-rc.4:
     deep-assign "^2.0.0"
     fbjs "^0.8.16"
     hyphenate-style-name "^1.0.2"
-    inline-style-prefixer "^3.0.8"
+    inline-style-prefixer "^4.0.0"
     normalize-css-color "^1.0.2"
     prop-types "^15.6.0"
     react-art "^16.2.0"
@@ -5250,9 +5250,9 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react-universal-ui@^0.1.71:
-  version "0.1.71"
-  resolved "https://registry.yarnpkg.com/react-universal-ui/-/react-universal-ui-0.1.71.tgz#28ac42eb907d88ff3ce68a9a9de883c4a8842888"
+react-universal-ui@^0.1.78:
+  version "0.1.78"
+  resolved "https://registry.yarnpkg.com/react-universal-ui/-/react-universal-ui-0.1.78.tgz#db4fec8f26d0cc912c666c2c044bcc38591f3a07"
   dependencies:
     react-native-drawer "^2.5.0"
     react-redux "^5.0.6"

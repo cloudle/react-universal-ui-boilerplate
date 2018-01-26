@@ -5,6 +5,9 @@ const invalidate = require('invalidate-module');
 const path = require('path');
 const morgan = require('morgan');
 
+/* workaround to avoid crash when loading [art] library on server */
+global.document = { createElement: () => {}, };
+
 moduleAlias.addAlias('react-native', 'react-native-web');
 
 const watcher = chokidar.watch('./src', { ignoreInitial: true });
