@@ -8,7 +8,8 @@ const env = process.env.ENV || 'dev';
 const port = process.env.PORT || 3000;
 const prod = env === 'prod';
 const publicPath = '/';
-const entry = ['babel-polyfill', './index.web.js'];
+const polyfills = ['babel-polyfill'];
+const entry = ['./index.web.js'];
 
 const hot = [
 	'react-hot-loader/patch',
@@ -49,7 +50,7 @@ module.exports = {
 	cache: true,
 	devtool: prod ? false : 'eval-source-map',
 	entry: {
-		app: prod ? [...entry] : [...hot, ...entry]
+		app: prod ? [...polyfills, ...entry] : [...polyfills, ...hot, ...entry]
 	},
 	output: {
 		publicPath,
