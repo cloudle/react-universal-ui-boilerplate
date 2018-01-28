@@ -27,8 +27,7 @@ yarn web
 ```
 
 ### Boost first-launch and hot-reload time!
-Run `yarn vendor` once to get commons library Chunks get cache and reuse..
-before run our `yarn web` make our development server rebuild faster (should be under `200 milliseconds`)!
+Run `yarn vendor` once before run our `yarn web` make our development server rebuild faster (should be under `200 milliseconds`)!
 
 That really save our time and money.
 
