@@ -4,6 +4,10 @@
 [react-native-web-url]: https://github.com/necolas/react-native-web
 [react-universal-ui-url]: https://npmjs.org/package/react-universal-ui
 
+#### A boilerplate for cross-platform React project - which let you run your [React Native][react-native-url] App on both Native (iOs, Android) and Web
+
+Extending [React Native][react-native-url]'s initial structure using [react-native-web][react-native-web-url] and UI components form [react-universal-ui][react-universal-ui-url].
+
 ## New updates:
 - Boost up build speed (first time build massively faster)
 - Allow skip common chunks (`yarn web-vendor` step)  which always required on `legacy` version (however it is still highly recommended to use)
@@ -11,11 +15,6 @@
 - Update to latest version of React, React Native ;)
 - Most up to date `iOs` and `Android` project template (by `react-native-cli`)  
 - Official Windows support!
-
-## Overview
-#### A boilerplate for cross-platform React project - which let you run your [React Native][react-native-url] App on both Native (iOs, Android) and Web
-
-Extending [React Native][react-native-url]'s initial structure using [react-native-web][react-native-web-url] and UI components form [react-universal-ui][react-universal-ui-url].
 
 ## Getting started
 ```
