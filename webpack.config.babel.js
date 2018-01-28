@@ -28,7 +28,9 @@ if (!isProduction) {
 }
 
 console.log('Preparing super awesome dev-server at', ` localhost:${port} `.bgGreen, ':p');
-console.log('(initial build may take a bit longer than hot-reload)'.magenta);
+if (!htmlOptions.useVendorChunks)
+	console.log('(serving without '.grey + 'common-library-cache'.green +
+		', run '.grey + 'yarn vendor'.magenta + ' once to boost up build speed)'.grey);
 
 module.exports = {
 	entry: ['babel-polyfill', './index.js'],
