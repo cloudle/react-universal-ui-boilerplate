@@ -2,11 +2,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const colors = require('colors');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 console.log('Building common chunks... Grab a cup of coffee while this is running ;)'.bgMagenta);
 
 const devVendors = [
-	'react-hot-loader',
+	// 'react-hot-loader',
 	'sockjs-client',
 	'url', 'strip-ansi', 'ansi-regex',
 ];
@@ -14,15 +15,8 @@ const devVendors = [
 module.exports = {
 	entry: {
 		'vendor': [
-			'babel-polyfill',
-			'react', 'react-dom',
-			'react-native-web',
-			'redux', 'react-redux',
-			'universal-vector-icons/FontAwesome',
-			'universal-vector-icons/Ionicons',
-			'universal-vector-icons/glyphmaps/MaterialIcons.json',
-			'tinycolor2', 'lodash',
-			...devVendors,
+			...devVendors, 'babel-polyfill', 'tinycolor2', 'lodash',
+			'react', 'react-dom', 'react-native-web', 'redux', 'react-redux',
 		],
 	},
 
@@ -62,6 +56,13 @@ module.exports = {
 		new webpack.DllPlugin({
 			path: path.join(__dirname, 'web/[name]-manifest.json'),
 			name: '[name]_lib'
+		}),
+		new ProgressBarPlugin({
+			width: 39, complete: '▓'.green.bgGreen, incomplete: ' '.green.bgWhite,
+			format: 'Build (:bar) (:elapsed seconds)',
+			summary: false, customSummary: (buildTime) => {
+				console.log('Build completed after', ` ${buildTime} `.bgGreen);
+			},
 		}),
 	],
 };

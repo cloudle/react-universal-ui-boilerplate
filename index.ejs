@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Distributor Portal</title>
+	<title>React Universal UI Boilerplate</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="msapplication-tap-highlight" content="no">
@@ -30,8 +30,8 @@
 <body>
 	<div id="root"></div>
 
-  <%if (!htmlWebpackPlugin.options.isProduction) { %>
-	<script src="vendor.bundle.js"></script>
+  <%if (htmlWebpackPlugin.options.useVendorChunks) { %>
+	<script src="/vendor.bundle.js"></script>
   <% } %>
 </body>
 </html>

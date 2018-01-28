@@ -1,34 +1,39 @@
-# React Universal UI  Boilerplate
+# React Universal UI Boilerplate
 
 [react-native-url]: https://facebook.github.io/react-native/
 [react-native-web-url]: https://github.com/necolas/react-native-web
 [react-universal-ui-url]: https://npmjs.org/package/react-universal-ui
+
+## New updates:
+- Update to latest version of React, React Native ;)
+- Most up to date `iOs` and `Android` project template (by `react-native-cli`) 
+- Improved `CLI`, `hot-loader` for Browser `development-server` 
+- Official Windows support!
 
 ## Overview
 #### A boilerplate for cross-platform React project - which let you run your [React Native][react-native-url] App on both Native (iOs, Android) and Web
 
 Extending [React Native][react-native-url]'s initial structure using [react-native-web][react-native-web-url] and UI components form [react-universal-ui][react-universal-ui-url].
 
-## Usage
+## Getting started
 ```
 git clone https://github.com/cloudle/react-universal-ui-boilerplate.git
 cd react-universal-ui-boilerplate
-npm install
-npm run web-vendor
-npm run web
+yarn install
+yarn web
 ```
 
-## Notes for Native run
-React native boilerplate code use vector-icons packages which need to link it's asset to native module.. so we'll need to run this as well:
-```
-react-native link
-```
-after it, we'll be able to safely run our app on native with `react-native run-ios` or `react-native run-android`
+### Boost first-launch and hot-reload time!
+Run `yarn vendor` once to get commons library Chunks get cache and reuse..
+before run our `yarn web` make our development server rebuild faster (should be under `200 milliseconds`)!
 
-**`web-vendor`** builds webpack's shared-dll which massively increase rebuild time for hot-reloading our code.
-*(Under* **200ms** *in my machine, which is quite close to React Native's rebuild).*
+That really save our time and money.
 
-## Run modes
-```
-npm run [web | web-vendor | ios | android]
-```
+## Full command list
+- `yarn vendor` build common chunks to reuse to boost our rebuild time ;)
+- `yarn web` launch our development server.
+- `yarn bundle` release our production build under `web` directory.
+- `yarn ios`, `yarn android` quick alias which launch our `iOs` or `Android` emulator.
+- `yarn test`, `yarn start`
+
+##### *note: `yarn vendor` cache our common library (e.g react, react-dom) into reusable chunks, that also mean it won't get updated when we install newer version of those packages (see webpack.vendor.js for more information).
