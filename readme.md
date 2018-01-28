@@ -3,8 +3,9 @@
 [react-native-url]: https://facebook.github.io/react-native/
 [react-native-web-url]: https://github.com/necolas/react-native-web
 [react-universal-ui-url]: https://npmjs.org/package/react-universal-ui
+[react-native-windows-url]: https://github.com/Microsoft/react-native-windows
 
-#### A boilerplate for cross-platform React project - which let you run your [React Native][react-native-url] App on both Native (iOs, Android) and Web
+#### A boilerplate for cross-platform React project - which let you run your [React Native][react-native-url] App on Native Mobile (iOs, Android), Native Windows and Web (Browser).
 
 Extending [React Native][react-native-url]'s initial structure using [react-native-web][react-native-web-url] and UI components form [react-universal-ui][react-universal-ui-url].
 
@@ -32,6 +33,11 @@ before run our `yarn web` make our development server rebuild faster (should be 
 That really save our time and money.
 
 ##### *note: `yarn vendor` cache our common library (e.g react, react-dom) into reusable chunks, that also mean it won't get updated when we install newer version of those packages (see webpack.vendor.js for more information).
+
+## Windows
+Structure of this boilerplate including supports to run on Windows (Native).
+ 
+It's pretty straight forward to add Windows build to our project (boilerplate) by follow the instruction by Microsoft [here][react-native-windows-url]..
 
 ## Full command list
 - `yarn vendor` build common chunks to reuse to boost our rebuild time ;)
