@@ -1,10 +1,10 @@
 require('colors');
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
-const env = process.env.ENV || 'development',
+const path = require('path'),
+	webpack = require('webpack'),
+	HtmlWebpackPlugin = require('html-webpack-plugin'),
+	ProgressBarPlugin = require('progress-bar-webpack-plugin'),
+	env = process.env.ENV || 'development',
 	optimizeMode = process.env.OPTIMIZE !== undefined,
 	port = process.env.PORT || 3000, publicPath = '/',
 	isProduction = env === 'production',
@@ -34,10 +34,14 @@ if (!htmlOptions.useVendorChunks)
 		', run '.grey + 'yarn vendor'.magenta + ' once to boost up build speed)'.grey);
 
 module.exports = {
-	entry: ['babel-polyfill', './index.js'],
+	cache: true,
+	devtool: isProduction ? false : 'eval-source-map',
+	entry: {
+		app: ['babel-polyfill', './index.js'],
+	},
 	output: {
 		publicPath, path: path.join(__dirname, 'web'),
-		filename: 'app.js',
+		filename: '[name].js',
 	},
 	resolve: {
 		alias: {
@@ -49,7 +53,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				exclude: /node_modules|packages/,
+				exclude: /node_modules|packages/, // <- comment this if you want hot-reload node_modules
 				test: /\.js$/,
 				loader: 'babel-loader',
 				options: {
