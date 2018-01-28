@@ -6,7 +6,7 @@
 
 ## New updates:
 - Boost up build speed (first time build massively faster)
-- Allow skip common chunks `vendor` step  which always required on `legacy` version (however it is still highly recommended to use)
+- Allow skip common chunks (`yarn web-vendor` step)  which always required on `legacy` version (however it is still highly recommended to use)
 - Improves `cli` message, `hot-loader` for Browser `development-server`
 - Update to latest version of React, React Native ;)
 - Most up to date `iOs` and `Android` project template (by `react-native-cli`)  
@@ -22,6 +22,7 @@ Extending [React Native][react-native-url]'s initial structure using [react-nati
 git clone https://github.com/cloudle/react-universal-ui-boilerplate.git
 cd react-universal-ui-boilerplate
 yarn install
+yarn vendor
 yarn web
 ```
 
