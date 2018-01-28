@@ -28,8 +28,7 @@ yarn web
 
 ### Boost first-launch and hot-reload time!
 Run `yarn vendor` once before run our `yarn web` make our development server rebuild faster (should be under `200 milliseconds`)!
-
-That really save our time and money.
+That really save our time and brain energy :p.
 
 ##### *note: `yarn vendor` cache our common library (e.g react, react-dom) into reusable chunks, that also mean it won't get updated when we install newer version of those packages (see webpack.vendor.js for more information).
 
