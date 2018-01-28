@@ -53,8 +53,8 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				exclude: /node_modules|packages/, // <- comment this if you want hot-reload node_modules
 				test: /\.js$/,
+				exclude: /node_modules|packages/, // <- comment this if you want hot-reload node_modules
 				loader: 'babel-loader',
 				options: {
 					plugins: ['react-hot-loader/babel', ]
