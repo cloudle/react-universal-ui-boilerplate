@@ -30,7 +30,7 @@ yarn web
 Run `yarn vendor` once before run our `yarn web` make our development server rebuild faster (should be under `200 milliseconds`)!
 That really save our time and brain energy :p.
 
-##### *note: `yarn vendor` cache our common library (e.g react, react-dom) into reusable chunks, that also mean it won't get updated when we install newer version of those packages (see webpack.vendor.js for more information).
+##### *note: `yarn vendor` cache our common library (e.g react, react-dom) into reusable chunks, that also mean it won't get update when we install newer version of those packages (see webpack.vendor.js for more information) - and we must re-run `yarn vendor` anytime those common libraries got updated.
 
 ## Windows
 Structure of this boilerplate including supports to run on Windows (Native).
