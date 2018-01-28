@@ -57,6 +57,7 @@ module.exports = {
 				exclude: /node_modules|packages/, // <- comment this if you want hot-reload node_modules
 				loader: 'babel-loader',
 				options: {
+					cacheDirectory: true,
 					plugins: ['react-hot-loader/babel', ]
 				}
 			},
