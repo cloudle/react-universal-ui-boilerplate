@@ -12,6 +12,7 @@ const devVendors = [
 ];
 
 module.exports = {
+	devtool: 'eval-source-map',
 	entry: {
 		'vendor': [
 			...devVendors, 'lodash',
