@@ -5,9 +5,11 @@
 [react-universal-ui-url]: https://npmjs.org/package/react-universal-ui
 
 ## New updates:
+- Boost up build speed (first time build massively faster)
+- Allow skip common chunks `vendor` step  which always required on `legacy` version (however it is still highly recommended to use)
+- Improves `cli` message, `hot-loader` for Browser `development-server`
 - Update to latest version of React, React Native ;)
-- Most up to date `iOs` and `Android` project template (by `react-native-cli`) 
-- Improved `CLI`, `hot-loader` for Browser `development-server` 
+- Most up to date `iOs` and `Android` project template (by `react-native-cli`)  
 - Official Windows support!
 
 ## Overview
