@@ -15,8 +15,10 @@ const devVendors = [
 module.exports = {
 	entry: {
 		'vendor': [
-			...devVendors, 'babel-polyfill', 'tinycolor2', 'lodash',
-			'react', 'react-dom', 'react-native-web', 'redux', 'react-redux',
+			...devVendors, 'lodash',
+			'react', 'react-dom', 'react-native-web',
+			'redux', 'react-redux',
+			'babel-polyfill', 'tinycolor2',
 		],
 	},
 
@@ -47,7 +49,7 @@ module.exports = {
 	},
 
 	output: {
-		filename: '[name].bundle.js',
+		filename: '[name].cache.js',
 		path: path.join(__dirname, 'web'),
 		library: '[name]_lib',
 	},

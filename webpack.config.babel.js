@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const env = process.env.ENV || 'development',
+	optimizeMode = process.env.OPTIMIZE !== undefined,
 	port = process.env.PORT || 3000, publicPath = '/',
 	isProduction = env === 'production',
 	htmlOptions = { isProduction, useVendorChunks: false },
@@ -35,8 +36,8 @@ if (!htmlOptions.useVendorChunks)
 module.exports = {
 	entry: ['babel-polyfill', './index.js'],
 	output: {
-		publicPath, path: path.join(__dirname, 'dist'),
-		filename: 'bundle.js',
+		publicPath, path: path.join(__dirname, 'web'),
+		filename: 'app.js',
 	},
 	resolve: {
 		alias: {
@@ -55,6 +56,15 @@ module.exports = {
 					plugins: ['react-hot-loader/babel', ]
 				}
 			},
+			{ test: /\.css$/, loader: "style-loader!css-loader" },
+			{
+				test: /\.(png|jpg|svg|ttf)$/,
+				loader: 'file-loader?name=[name].[ext]'
+			},
+			{
+				test: /\.json/,
+				loader: 'json-loader'
+			},
 		],
 	},
 	plugins: [
@@ -70,21 +80,24 @@ module.exports = {
 		port, publicPath, contentBase: 'web', hot: true,
 		historyApiFallback: true,
 		stats: { /* https://webpack.js.org/configuration/stats/#stats */
-			assets:					false,
+			assets:					optimizeMode,
 			colors:					true,
 			version:				true,
-			hash:						false,
+			hash:						optimizeMode,
 			timings:				true,
-			chunks:					false,
-			modules:				false,
-			chunkModules:		false,
-			chunkOrigins:		false,
-			cached:					false,
+			chunks:					optimizeMode,
+			performance:		optimizeMode,
+			modules:				optimizeMode,
+			moduleTrace:		optimizeMode,
+			modulesSort:		'size',
+			chunkModules:		optimizeMode,
+			chunkOrigins:		optimizeMode,
+			cached:					true,
 			error:					true,
-			cachedAssets:		false,
+			cachedAssets:		optimizeMode,
 		},
-		quiet: true,
-		noInfo: true,
+		quiet: !optimizeMode,
+		noInfo: !optimizeMode,
 		overlay: true,
 	},
 };
