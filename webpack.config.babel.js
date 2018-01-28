@@ -1,21 +1,21 @@
+require('colors');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const colors = require('colors');
-const prettyBytes = require('pretty-bytes');
 
 const env = process.env.ENV || 'development',
+	port = process.env.PORT || 3000, publicPath = '/',
 	isProduction = env === 'production',
 	htmlOptions = { isProduction, useVendorChunks: false },
-	optionalPlugins = [],
-	publicPath = '/';
+	optionalPlugins = [];
 
 if (!isProduction) {
 	if (require('fs').existsSync('./web/vendor-manifest.json')) {
 		htmlOptions.useVendorChunks = true;
 		optionalPlugins.push(new webpack.DllReferencePlugin({
-			context: '.', manifest: require('./web/vendor-manifest.json'), }));
+			context: '.', manifest: require('./web/vendor-manifest.json'),
+		}));
 	}
 
 	optionalPlugins.push(new ProgressBarPlugin({
@@ -27,17 +27,15 @@ if (!isProduction) {
 	}));
 }
 
-console.log(htmlOptions);
-
-console.log('Preparing super awesome dev-server at', ` localhost:3002 `.bgGreen, ':p');
+console.log('Preparing super awesome dev-server at', ` localhost:${port} `.bgGreen, ':p');
 console.log('(initial build may take a bit longer than hot-reload)'.magenta);
 
 module.exports = {
-  entry: ['babel-polyfill', './index.js'],
-  output: {
+	entry: ['babel-polyfill', './index.js'],
+	output: {
 		publicPath, path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-  },
+		filename: 'bundle.js',
+	},
 	resolve: {
 		alias: {
 			'react-native': 'react-native-web',
@@ -45,19 +43,19 @@ module.exports = {
 		modules: ['node_modules'],
 		extensions: ['.js']
 	},
-  module: {
-    rules: [
-      {
-        exclude: /node_modules|packages/,
-        test: /\.js$/,
-        loader: 'babel-loader',
+	module: {
+		rules: [
+			{
+				exclude: /node_modules|packages/,
+				test: /\.js$/,
+				loader: 'babel-loader',
 				options: {
-        	plugins: ['react-hot-loader/babel',]
+					plugins: ['react-hot-loader/babel', ]
 				}
-      },
-    ],
-  },
-  plugins: [
+			},
+		],
+	},
+	plugins: [
 		new HtmlWebpackPlugin({
 			...htmlOptions,
 			template: 'index.ejs',
@@ -67,10 +65,7 @@ module.exports = {
 		...optionalPlugins,
 	],
 	devServer: {
-		port: 3002,
-		publicPath: '/',
-		contentBase: 'web',
-		hot: true,
+		port, publicPath, contentBase: 'web', hot: true,
 		historyApiFallback: true,
 		stats: { /* https://webpack.js.org/configuration/stats/#stats */
 			assets:					false,
