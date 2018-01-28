@@ -32,11 +32,11 @@ before run our `yarn web` make our development server rebuild faster (should be 
 
 That really save our time and money.
 
+##### *note: `yarn vendor` cache our common library (e.g react, react-dom) into reusable chunks, that also mean it won't get updated when we install newer version of those packages (see webpack.vendor.js for more information).
+
 ## Full command list
 - `yarn vendor` build common chunks to reuse to boost our rebuild time ;)
 - `yarn web` launch our development server.
 - `yarn bundle` release our production build under `web` directory.
 - `yarn ios`, `yarn android` quick alias which launch our `iOs` or `Android` emulator.
 - `yarn test`, `yarn start`
-
-##### *note: `yarn vendor` cache our common library (e.g react, react-dom) into reusable chunks, that also mean it won't get updated when we install newer version of those packages (see webpack.vendor.js for more information).
