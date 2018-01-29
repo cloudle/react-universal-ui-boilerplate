@@ -22,7 +22,7 @@ const PORT = 3005,
 	server = express();
 
 server.set('view engine', 'ejs');
-server.use(express.static('web'));
+server.use(express.static('static'));
 server.use(morgan('dev'));
 
 server.use((req, res, next) => {
@@ -31,5 +31,5 @@ server.use((req, res, next) => {
 });
 
 server.listen(PORT, () => {
-	console.log('Some mysterious magic stream is raising at..', ` localhost:${PORT} `.bgGreen, ':p');
+	console.log('Your api-server now listening at', ` localhost:${PORT} `.bgGreen, ':p');
 });

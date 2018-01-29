@@ -2,7 +2,8 @@ import { Router } from 'express';
 import { AppRegistry } from 'react-native';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 
-import App from '../';
+import * as webpackConfigs from '../../webpack.config.babel';
+import App from '../index';
 
 const router = Router();
 
@@ -17,8 +18,12 @@ router.use('*', (req, res, next) => {
 		{ element, stylesheets } = AppRegistry.getApplication('App', { initialProps, rootTag: 'root' }),
 		initialHtml = renderToString(element),
 		initialStyles = stylesheets.map(sheet => renderToStaticMarkup(sheet)).join('\n');
-
-	res.render('../index', { initialStyles, initialHtml, serverSide: true });
+	console.log(webpackConfigs.output.publicPath);
+	res.render('../index', {
+		initialStyles, initialHtml,
+		serverSide: true,
+		publicPath: webpackConfigs.output.publicPath,
+	});
 });
 
 module.exports = router;

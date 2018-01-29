@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Platform, } from 'react-native';
 import { connect, ContextProvider, Button } from 'react-universal-ui';
 
-import Icon from '../../components/vector-icons/Ionicons';
+import Icon from '../../components/vector-icons/MaterialIcons';
 import * as appActions from '../../store/action/app';
+
+const instructions = Platform.select({
+	ios: 'Press Cmd+R to reload,\n' +
+	'Cmd+D or shake for dev menu',
+	android: 'Double tap R on your keyboard to reload,\n' +
+	'Shake or press menu button for dev menu',
+	web: 'Command/Control+R to reload your browser :p\n' +
+	'\nAnd in Browser, we have great advantage\nwhen using Chrome Developer Tool\ncompare to the poor native-dev-menu!',
+});
 
 type Props = {
 	counter?: string,
@@ -17,25 +26,26 @@ type Props = {
 })
 
 export default class HomeScene extends Component {
+	props: Props;
+
 	render() {
 		const beerIcon = <Icon
-			name="ios-beer-outline"
+			name="whatshot"
 			style={styles.buttonIcon}/>;
 
 		return <View style={styles.container}>
 			<Text style={styles.welcome}>
-				Welcome to React Native
+				Welcome to Universal Ui
 			</Text>
 			<Text style={styles.instructions}>
-				To get started, edit src/app.js
+				To get started, edit src/index.js
 			</Text>
 			<Text style={styles.instructions}>
-				Press Cmd+R to reload,{'\n'}
-				Cmd+D or shake for dev menu
+				{instructions}
 			</Text>
 			<Button
 				wrapperStyle={styles.buttonWrapper}
-				title={`Click me! ${this.props.counter}`}
+				title={`Increase counter [${this.props.counter}]`}
 				icon={beerIcon}
 				onPress={this.increaseCounter}/>
 		</View>;
@@ -64,11 +74,10 @@ const styles = StyleSheet.create({
 	},
 	counterButton: {
 		backgroundColor: '#00bcd4',
-		width: 120, marginTop: 10,
+		marginTop: 10,
 	},
 	buttonWrapper: {
 		backgroundColor: '#00bcd4',
-		width: 120,
 		marginTop: 20,
 	},
 	buttonIcon: {

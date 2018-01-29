@@ -27,17 +27,17 @@
 
 		@font-face {
 			font-family: Material Icons;
-			src: url(MaterialIcons.ttf) format('truetype');
+			src: url(/MaterialIcons.ttf) format('truetype');
 		}
 
 		@font-face {
 			font-family: FontAwesome;
-			src: url(FontAwesome.ttf) format('truetype');
+			src: url(/FontAwesome.ttf) format('truetype');
 		}
 
 		@font-face {
 			font-family: Ionicons;
-			src: url(Ionicons.ttf) format('truetype');
+			src: url(/Ionicons.ttf) format('truetype');
 		}
 
 		<% if (typeof initialStyles !== 'undefined') { %><%-initialStyles%><% } %>
@@ -47,13 +47,13 @@
 <body>
 	<div id="root"><% if (typeof initialHtml !== 'undefined') { %><%-initialHtml%><% } %></div>
 
-  <%if (typeof htmlWebpackPlugin !== 'undefined' && htmlWebpackPlugin.options.useVendorChunks) { %>
+	<%if (typeof htmlWebpackPlugin !== 'undefined' && htmlWebpackPlugin.options.useVendorChunks) { %>
   <script src="<%=htmlWebpackPlugin.options.publicPath%>vendor.cache.js"></script>
   <% } %>
 
   <% if (typeof serverSide !== 'undefined') { %>
-  <script src="http://localhost:3000/vendor.bundle.js"></script>
-  <script src="http://localhost:3000/app.js"></script>
+  <script src="<%=publicPath%>vendor.cache.js"></script>
+  <script src="<%=publicPath%>app.js"></script>
   <% } %>
 </body>
 </html>

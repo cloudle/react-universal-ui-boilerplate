@@ -5,7 +5,6 @@ import { Switch, Route, StaticRouter } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 import { hot } from 'react-hot-loader';
 
-import Icon from './components/vector-icons/Ionicons';
 import HomeScene from './scenes/home';
 import NotFoundScene from './scenes/notFound';
 

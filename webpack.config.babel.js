@@ -6,7 +6,7 @@ const path = require('path'),
 	ProgressBarPlugin = require('progress-bar-webpack-plugin'),
 	env = process.env.ENV || 'development',
 	optimizeMode = process.env.OPTIMIZE !== undefined,
-	port = process.env.PORT || 3000, publicPath = '/',
+	port = process.env.PORT || 3000, publicPath = 'http://localhost:3000/',
 	isProduction = env === 'production',
 	htmlOptions = { isProduction, publicPath, useVendorChunks: false },
 	optionalPlugins = [];
@@ -88,6 +88,11 @@ module.exports = {
 	devServer: {
 		port, publicPath, contentBase: 'web', hot: true,
 		historyApiFallback: true,
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+			"Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+		},
 		stats: { /* https://webpack.js.org/configuration/stats/#stats */
 			assets:					optimizeMode,
 			colors:					true,
