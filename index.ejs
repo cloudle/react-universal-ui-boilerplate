@@ -31,7 +31,7 @@
 	<div id="root"></div>
 
   <%if (htmlWebpackPlugin.options.useVendorChunks) { %>
-	<script src="/vendor.cache.js"></script>
+	<script src="<%=htmlWebpackPlugin.options.publicPath%>vendor.cache.js"></script>
   <% } %>
 </body>
 </html>

@@ -8,7 +8,7 @@ const path = require('path'),
 	optimizeMode = process.env.OPTIMIZE !== undefined,
 	port = process.env.PORT || 3000, publicPath = '/',
 	isProduction = env === 'production',
-	htmlOptions = { isProduction, useVendorChunks: false },
+	htmlOptions = { isProduction, publicPath, useVendorChunks: false },
 	optionalPlugins = [];
 
 if (!isProduction) {
@@ -73,6 +73,10 @@ module.exports = {
 		],
 	},
 	plugins: [
+		new webpack.DefinePlugin({
+			ENV: JSON.stringify(env),
+			'process.env.NODE_ENV': JSON.stringify(env),
+		}),
 		new HtmlWebpackPlugin({
 			...htmlOptions,
 			template: 'index.ejs',
