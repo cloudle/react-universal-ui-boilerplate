@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { utils, connect, ContextProvider, Modal, Snackbar, Dropdown, } from 'react-universal-ui';
 import { Switch, Route, StaticRouter } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
+import { hot } from 'react-hot-loader';
 
 import Icon from './components/vector-icons/Ionicons';
 import HomeScene from './scenes/home';
@@ -55,39 +56,17 @@ type ContainerProps = {
 	ssrContext?: Object,
 };
 
-export default function AppContainer(props: ContainerProps) {
+function AppContainer(props: ContainerProps) {
 	return <ContextProvider store={store}>
 		<App ssrLocation={props.ssrLocation} ssrContext={props.ssrContext}/>
 	</ContextProvider>;
 }
 
+export default utils.isBrowser
+	? hot(module)(AppContainer) : AppContainer;
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	welcome: {
-		fontSize: 20,
-		textAlign: 'center',
-		margin: 10,
-	},
-	instructions: {
-		textAlign: 'center',
-		color: '#333333',
-		marginBottom: 5,
-	},
-	counterButton: {
-		backgroundColor: '#00bcd4',
-		width: 120, marginTop: 10,
-	},
-	buttonWrapper: {
-		backgroundColor: '#00bcd4',
-		width: 120,
-		marginTop: 20,
-	},
-	buttonIcon: {
-		fontSize: 28,
-		color: '#ffffff',
 	},
 });

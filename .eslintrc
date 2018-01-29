@@ -39,6 +39,7 @@
     "react/jsx-wrap-multilines": "off",
     "react/jsx-indent": "off",
     "react/jsx-closing-bracket-location": "off",
+    "react/jsx-closing-tag-location": "off",
     "react/jsx-space-before-closing": "off",
     "react/jsx-tag-spacing": "off"
   },

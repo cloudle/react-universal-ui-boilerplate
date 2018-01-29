@@ -47,13 +47,13 @@
 <body>
 	<div id="root"><% if (typeof initialHtml !== 'undefined') { %><%-initialHtml%><% } %></div>
 
-  <%if (typeof htmlWebpackPlugin !== 'undefined' && !htmlWebpackPlugin.options.isProduction) { %>
-		<script src="/vendor.bundle.js"></script>
+  <%if (typeof htmlWebpackPlugin !== 'undefined' && htmlWebpackPlugin.options.useVendorChunks) { %>
+  <script src="<%=htmlWebpackPlugin.options.publicPath%>vendor.cache.js"></script>
   <% } %>
 
   <% if (typeof serverSide !== 'undefined') { %>
-		<script src="http://localhost:3000/vendor.bundle.js"></script>
-		<script src="http://localhost:3000/app.js"></script>
+  <script src="http://localhost:3000/vendor.bundle.js"></script>
+  <script src="http://localhost:3000/app.js"></script>
   <% } %>
 </body>
 </html>
