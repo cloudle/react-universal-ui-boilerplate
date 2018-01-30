@@ -36,7 +36,7 @@ module.exports = {
 				test: /\.js?$/,
 				loaders: ['babel-loader'],
 			},
-			{ test: /\.css$/, loader: "style-loader!css-loader" },
+			{ test: /\.css$/, loader: 'style-loader!css-loader' },
 			{
 				test: /\.(png|jpg|svg|ttf)$/,
 				loader: 'file-loader?name=[name].[ext]'

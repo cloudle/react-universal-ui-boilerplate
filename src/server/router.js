@@ -18,7 +18,7 @@ router.use('*', (req, res, next) => {
 		{ element, stylesheets } = AppRegistry.getApplication('App', { initialProps, rootTag: 'root' }),
 		initialHtml = renderToString(element),
 		initialStyles = stylesheets.map(sheet => renderToStaticMarkup(sheet)).join('\n');
-	console.log(webpackConfigs.output.publicPath);
+
 	res.render('../index', {
 		initialStyles, initialHtml,
 		serverSide: true,
