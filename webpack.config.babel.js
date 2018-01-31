@@ -29,9 +29,10 @@ if (!isProduction) {
 }
 
 console.log('Preparing super awesome dev-server at', ` localhost:${port} `.bgGreen, ':p');
-if (!htmlOptions.useVendorChunks)
+if (!htmlOptions.useVendorChunks) {
 	console.log('(serving without '.grey + 'common-library-cache'.green +
 		', run '.grey + 'yarn vendor'.magenta + ' once to boost up build speed)'.grey);
+}
 
 module.exports = {
 	cache: true,

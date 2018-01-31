@@ -2,8 +2,8 @@ import { Router } from 'express';
 import { AppRegistry } from 'react-native';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 
-import * as webpackConfigs from '../../webpack.config.babel';
 import App from '../index';
+import * as webpackConfigs from '../../webpack.config.babel';
 
 const router = Router();
 
