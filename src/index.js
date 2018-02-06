@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Platform } from 'react-native';
 import { connect, utils, ContextProvider, Button } from 'react-universal-ui';
-import { hot } from 'react-hot-loader';
 
 import { store } from './store';
 import * as appActions from './store/action/app';
@@ -52,14 +51,11 @@ class App extends Component {
 	};
 }
 
-function AppContainer(props) {
+export default function AppContainer(props) {
 	return <ContextProvider store={store}>
 		<App/>
 	</ContextProvider>;
 }
-
-export default utils.isBrowser
-	? hot(module)(AppContainer) : AppContainer;
 
 const styles = StyleSheet.create({
 	container: {
