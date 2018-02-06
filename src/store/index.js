@@ -1,5 +1,5 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import reducers from './reducers';
 
 const DEVTOOLS = '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__',

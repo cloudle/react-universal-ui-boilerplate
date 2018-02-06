@@ -30,8 +30,8 @@
 <body>
 	<div id="root"></div>
 
-  <%if (!htmlWebpackPlugin.options.isProduction) { %>
-	<script src="vendor.bundle.js"></script>
+  <%if (htmlWebpackPlugin.options.useVendorChunks) { %>
+	<script src="/vendor.bundle.js"></script>
   <% } %>
 </body>
 </html>

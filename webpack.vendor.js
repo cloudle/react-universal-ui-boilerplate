@@ -2,6 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const colors = require('colors');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 console.log('Building common chunks... Grab a cup of coffee while this is running ;)'.bgMagenta);
 
@@ -62,6 +63,13 @@ module.exports = {
 		new webpack.DllPlugin({
 			path: path.join(__dirname, 'web/[name]-manifest.json'),
 			name: '[name]_lib'
+		}),
+		new ProgressBarPlugin({
+			width: 39, complete: '▓'.green.bgGreen, incomplete: ' '.green.bgWhite,
+			format: 'Build (:bar) (:elapsed seconds)',
+			summary: false, customSummary: (buildTime) => {
+				console.log('Build completed after', ` ${buildTime} `.bgGreen);
+			},
 		}),
 	],
 };

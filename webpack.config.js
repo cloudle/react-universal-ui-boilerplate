@@ -3,58 +3,56 @@ const webpack = require('webpack');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const colors = require('colors');
 
-const env = process.env.ENV || 'dev';
-const port = process.env.PORT || 3000;
-const prod = env === 'prod';
-const publicPath = '/';
-const polyfills = ['babel-polyfill'];
-const entry = ['./index.web.js'];
+const env = process.env.ENV || 'dev',
+	port = process.env.PORT || 3000,
+	isProduction = env === 'production',
+	publicPath = '/',
+	htmlOptions = { isProduction, publicPath, useVendorChunks: false },
+	optionalPlugins = [],
+	polyfills = ['babel-polyfill'],
+	entry = ['./index.web.js'],
+	hot = [
+		'react-hot-loader/patch',
+		`webpack-dev-server/client?${publicPath}`,
+		'webpack/hot/only-dev-server',
+	];
 
-const hot = [
-	'react-hot-loader/patch',
-	`webpack-dev-server/client?${publicPath}`,
-	'webpack/hot/only-dev-server',
-];
+if (!isProduction) {
+	optionalPlugins.push(new webpack.HotModuleReplacementPlugin());
+	optionalPlugins.push(new webpack.NamedModulesPlugin());
+	optionalPlugins.push(new webpack.NoEmitOnErrorsPlugin());
 
-const plugins = [
-	new DefinePlugin({
-		ENV: JSON.stringify(env)
-	}),
-	new webpack.optimize.OccurrenceOrderPlugin(),
-	new HtmlWebpackPlugin({
-		isProduction: prod,
-		template: 'index.ejs',
-		filename: 'index.html',
-	}),
-	new ProgressBarPlugin({
-		width: 39, complete: '█', incomplete: '¦', summary: false,
-	}),
-];
+	if (require('fs').existsSync('./web/vendor-manifest.json')) {
+		htmlOptions.useVendorChunks = true;
+		optionalPlugins.push(new webpack.DllReferencePlugin({
+			context: '.', manifest: require('./web/vendor-manifest.json'),
+		}));
+	}
 
-if (env === 'dev') {
-	plugins.push(new webpack.HotModuleReplacementPlugin());
-	plugins.push(new webpack.NamedModulesPlugin());
-	plugins.push(new webpack.NoEmitOnErrorsPlugin());
-	plugins.push(new webpack.DllReferencePlugin({
-		context: '.',
-		manifest: require('./web/vendor-manifest.json'),
+	if (!htmlOptions.useVendorChunks) {
+		console.log('(serving without '.grey + 'common-library-cache'.green +
+			', run '.grey + 'yarn vendor'.magenta + ' once to boost up build speed)'.grey);
+	}
+
+	optionalPlugins.push(new ProgressBarPlugin({
+		width: 39, complete: '▓'.green.bgGreen, incomplete: ' '.green.bgWhite,
+		format: 'Build (:bar) (:elapsed seconds)',
+		summary: false, customSummary: (buildTime) => {
+			console.log('Build completed after', ` ${buildTime} `.bgGreen);
+		},
 	}));
-	plugins.push(new webpack.ContextReplacementPlugin(
-		/graphql-language-service-interface[\\/]dist$/,
-		new RegExp('^\\./.*\\.js$')
-	));
 }
 
 module.exports = {
 	cache: true,
-	devtool: prod ? false : 'eval-source-map',
+	devtool: isProduction ? false : 'eval-source-map',
 	entry: {
-		app: prod ? [...polyfills, ...entry] : [...polyfills, ...hot, ...entry]
+		app: isProduction ? [...polyfills, ...entry] : [...polyfills, ...hot, ...entry]
 	},
 	output: {
-		publicPath,
-		path: path.join(__dirname, 'web'),
+		publicPath, path: path.join(__dirname, 'web'),
 		filename: '[name].bundle-[hash].js',
 		chunkFilename: '[name].js',
 	},
@@ -65,13 +63,16 @@ module.exports = {
 		modules: ['node_modules'],
 		extensions: ['.js']
 	},
-	plugins,
 	module: {
 		rules: [
 			{
 				test: /\.js?$/,
-				loaders: prod ? ['babel-loader'] : ['react-hot-loader/webpack', 'babel-loader'],
-				exclude: /node_modules\/idtoken-verifier/,
+				exclude: /node_modules|packages/, // <- comment this if you want hot-reload node_modules
+				loader: 'babel-loader',
+				options: {
+					cacheDirectory: true,
+					plugins: ['react-hot-loader/babel', ]
+				}
 			},
 			{ test: /\.css$/, loader: 'style-loader!css-loader' },
 			{
@@ -84,4 +85,17 @@ module.exports = {
 			}
 		],
 	},
+	plugins: [
+		new DefinePlugin({
+			ENV: JSON.stringify(env),
+			'process.env.NODE_ENV': JSON.stringify(env),
+		}),
+		new webpack.optimize.OccurrenceOrderPlugin(),
+		new HtmlWebpackPlugin({
+			...htmlOptions,
+			template: 'index.ejs',
+			filename: 'index.html',
+		}),
+		...optionalPlugins,
+	]
 };
