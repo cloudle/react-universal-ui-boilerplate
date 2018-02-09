@@ -64,7 +64,7 @@
     "react-test-renderer": "16.2.0",
     "redux-logger": "^3.0.6",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "2.9.7"
+    "webpack-dev-server": "^2.11.1"
   },
   "jest": {
     "preset": "react-native"
