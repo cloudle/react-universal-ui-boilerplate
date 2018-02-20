@@ -19,6 +19,7 @@ module.exports = {
 			...devVendors, 'lodash',
 			'react', 'react-dom', 'react-native-web',
 			'redux', 'react-redux',
+			'react-router', 'react-router-config', 'react-router-dom',
 			'babel-polyfill', 'tinycolor2',
 		],
 	},
