@@ -8,7 +8,7 @@ const colors = require('colors');
 const env = process.env.ENV || 'dev',
 	port = process.env.PORT || 3000,
 	isProduction = env === 'production',
-	publicPath = '/',
+	publicPath = `http://localhost:${port}/`,
 	htmlOptions = { isProduction, publicPath, useVendorChunks: false },
 	optionalPlugins = [],
 	polyfills = ['babel-polyfill'],
@@ -53,7 +53,7 @@ module.exports = {
 	},
 	output: {
 		publicPath, path: path.join(__dirname, 'web'),
-		filename: '[name].bundle-[hash].js',
+		filename: '[name].js',
 		chunkFilename: '[name].js',
 	},
 	resolve: {
@@ -67,7 +67,6 @@ module.exports = {
 		rules: [
 			{
 				test: /\.js?$/,
-				exclude: /node_modules|packages/, // <- comment this if you want hot-reload node_modules
 				loader: 'babel-loader',
 				options: {
 					cacheDirectory: true,

@@ -24,3 +24,10 @@ export type LayoutEvent = {
 		},
 	},
 };
+
+export type Route = {
+	component: any,
+	path?: String,
+	exact?: Boolean,
+	routes?: Array<Route>,
+};

@@ -3,7 +3,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
 const colors = require('colors');
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 const optimizeMode = process.env.OPTIMIZE !== undefined;
 
 console.log('Preparing super awesome dev-server at', ` localhost:${port} `.bgGreen, ':p');

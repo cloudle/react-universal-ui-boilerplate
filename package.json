@@ -1,72 +1,81 @@
 {
-  "name": "app",
-  "version": "0.1.2",
-  "private": true,
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "vendor": "webpack --config webpack.vendor.js",
-    "optimize": "better-npm-run optimize",
-    "web": "node webpack.devserver",
-    "bundle": "better-npm-run bundle",
-    "ios": "react-native run-ios",
-    "android": "react-native run-android"
-  },
-  "betterScripts": {
-    "bundle": {
-      "env": {
-        "ENV": "production"
-      },
-      "command": "webpack --config webpack.config.js --progress"
-    },
-    "optimize": {
-      "env": {
-        "OPTIMIZE": "true"
-      },
-      "command": "webpack-dev-server --hot"
-    }
-  },
-  "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-native": "0.52.2",
-    "react-native-drawer": "^2.3.0",
-    "react-native-web": "^0.3.4",
-    "react-universal-ui": "^0.1.78",
-    "universal-vector-icons": "^4.4.1"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.1",
-    "babel-jest": "22.1.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react-native": "^4.0.0",
-    "better-npm-run": "^0.1.0",
-    "colors": "^1.1.2",
-    "eslint": "^4.16.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-flowtype": "^2.42.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.6.0",
-    "file-loader": "^1.1.6",
-    "html-webpack-plugin": "^2.30.1",
-    "jest": "22.1.4",
-    "json-loader": "^0.5.7",
-    "progress-bar-webpack-plugin": "^1.10.0",
-    "react-hot-loader": "3.0.0-beta.7",
-    "react-test-renderer": "16.2.0",
-    "redux-logger": "^3.0.6",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
-  },
-  "jest": {
-    "preset": "react-native"
-  }
+	"name": "react-universal-ui-boilerplate",
+	"version": "1.0.0",
+	"license": "MIT",
+	"scripts": {
+		"start": "babel-node --inspect server.js",
+		"test": "jest",
+		"vendor": "webpack --config webpack.vendor.js",
+		"optimize": "better-npm-run optimize",
+		"web": "node webpack.devserver",
+		"bundle": "better-npm-run bundle",
+		"ios": "react-native run-ios",
+		"android": "react-native run-android"
+	},
+	"betterScripts": {
+		"bundle": {
+			"env": {
+				"ENV": "production"
+			},
+			"command": "webpack --config webpack.config.js --progress"
+		},
+		"optimize": {
+			"env": {
+				"OPTIMIZE": "true"
+			},
+			"command": "webpack-dev-server --hot"
+		}
+	},
+	"dependencies": {
+		"babel-polyfill": "^6.26.0",
+		"morgan": "^1.9.0",
+		"react": "^16.2.0",
+		"react-dom": "^16.2.0",
+		"react-native": "0.52.2",
+		"react-native-web": "^0.5.0",
+		"react-redux": "^5.0.6",
+		"react-router": "^4.2.0",
+		"react-router-config": "^1.0.0-beta.4",
+		"react-router-dom": "^4.2.2",
+		"react-router-native": "^4.2.0",
+		"react-universal-ui": "^0.1.78"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.24.1",
+		"babel-core": "^6.26.0",
+		"babel-eslint": "^8.2.1",
+		"babel-jest": "22.1.0",
+		"babel-loader": "^7.1.2",
+		"babel-plugin-transform-class-properties": "^6.24.1",
+		"babel-plugin-transform-decorators-legacy": "^1.3.4",
+		"babel-preset-env": "^1.6.1",
+		"babel-preset-react-native": "^4.0.0",
+		"better-npm-run": "^0.1.0",
+		"colors": "^1.1.2",
+		"css-loader": "^0.28.9",
+		"ejs": "^2.5.7",
+		"eslint": "^4.16.0",
+		"eslint-config-airbnb": "^16.1.0",
+		"eslint-loader": "^1.7.1",
+		"eslint-plugin-flowtype": "^2.42.0",
+		"eslint-plugin-import": "^2.8.0",
+		"eslint-plugin-jsx-a11y": "^6.0.3",
+		"eslint-plugin-react": "^7.6.0",
+		"file-loader": "^1.1.6",
+		"html-webpack-plugin": "^2.30.1",
+		"invalidate-module": "^1.0.0",
+		"jest": "22.1.4",
+		"json-loader": "^0.5.7",
+		"module-alias": "^2.0.3",
+		"progress-bar-webpack-plugin": "^1.10.0",
+		"react-hot-loader": "3.0.0-beta.7",
+		"react-test-renderer": "16.2.0",
+		"redux-logger": "^3.0.6",
+		"style-loader": "^0.20.1",
+		"webpack": "^3.10.0",
+		"webpack-dev-server": "^2.11.1"
+	},
+	"jest": {
+		"preset": "react-native"
+	}
 }

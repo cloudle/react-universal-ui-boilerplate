@@ -24,14 +24,35 @@
 			cursor: pointer;
 			user-select: none;
 		}
+
+		@font-face {
+			font-family: Material Icons;
+			src: url(/MaterialIcons.ttf) format('truetype');
+		}
+
+		@font-face {
+			font-family: FontAwesome;
+			src: url(/FontAwesome.ttf) format('truetype');
+		}
+
+		@font-face {
+			font-family: Ionicons;
+			src: url(/Ionicons.ttf) format('truetype');
+		}
 	</style>
+  <% if (typeof initialStyles !== 'undefined') { %><%-initialStyles%><% } %>
 </head>
 
 <body>
-	<div id="root"></div>
+	<div id="root"><% if (typeof initialHtml !== 'undefined') { %><%-initialHtml%><% } %></div>
 
-  <%if (htmlWebpackPlugin.options.useVendorChunks) { %>
-	<script src="<%=htmlWebpackPlugin.options.publicPath%>vendor.cache.js"></script>
+	<%if (typeof htmlWebpackPlugin !== 'undefined' && htmlWebpackPlugin.options.useVendorChunks) { %>
+  <script src="<%=htmlWebpackPlugin.options.publicPath%>vendor.cache.js"></script>
+  <% } %>
+
+  <% if (typeof serverSide !== 'undefined') { %>
+  <script src="<%=publicPath%>vendor.cache.js"></script>
+  <script src="<%=publicPath%>app.js"></script>
   <% } %>
 </body>
 </html>

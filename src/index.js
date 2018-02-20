@@ -1,88 +1,48 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
-import { connect, utils, ContextProvider, Button } from 'react-universal-ui';
+import { View, Text } from 'react-native';
+import { utils, ContextProvider, } from 'react-universal-ui';
+import { Router, MemoryRouter, StaticRouter } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
 
+import routes from './routes';
 import { store } from './store';
-import * as appActions from './store/action/app';
 
-const instructions = Platform.select({
-	ios: 'Press Cmd+R to reload,\n' +
-	'Cmd+D or shake for dev menu',
-	android: 'Double tap R on your keyboard to reload,\n' +
-	'Shake or press menu button for dev menu',
-	web: 'Command/Control+R to reload your browser :p\n' +
-	'\nAnd in Browser, we have great advantage\nwhen using Chrome Developer Tool\ncompare to the poor native-dev-menu!',
-});
-
-type Props = {
-	counter?: string,
-	dispatch?: Function,
+type ContainerProps = {
+	ssrLocation?: string,
+	ssrContext?: Object,
 };
 
-@connect(({ app }) => {
-	return {
-		counter: app.counter,
-	};
-})
+export default function AppContainer(props: ContainerProps) {
+	const routerAndProps = getRouterAndProps(props),
+		Router = routerAndProps.component,
+		routerProps = routerAndProps.props;
 
-class App extends Component {
-	props: Props;
-
-	render() {
-		return <View style={styles.container}>
-			<Text style={styles.welcome}>
-				Welcome to Universal Ui
-			</Text>
-			<Text style={styles.instructions}>
-				To get started, edit src/index.js
-			</Text>
-			<Text style={styles.instructions}>
-				{instructions}
-			</Text>
-			<Button
-				wrapperStyle={styles.buttonWrapper}
-				title={`Increase counter [${this.props.counter}]`}
-				onPress={this.increaseCounter}/>
-		</View>;
-	}
-
-	increaseCounter = () => {
-		this.props.dispatch(appActions.increaseCounter());
-	};
-}
-
-export default function AppContainer(props) {
 	return <ContextProvider store={store}>
-		<App/>
+		<Router {...routerProps}>
+			{renderRoutes(routes)}
+		</Router>
 	</ContextProvider>;
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	welcome: {
-		fontSize: 20,
-		textAlign: 'center',
-		margin: 10,
-	},
-	instructions: {
-		textAlign: 'center',
-		color: '#333333',
-		marginBottom: 5,
-	},
-	counterButton: {
-		backgroundColor: '#00bcd4',
-		marginTop: 10,
-	},
-	buttonWrapper: {
-		backgroundColor: '#00bcd4',
-		marginTop: 20,
-	},
-	buttonIcon: {
-		fontSize: 28,
-		color: '#ffffff',
-	},
-});
+function getRouterAndProps(props) {
+	if (utils.isServer) {
+		return {
+			component: StaticRouter,
+			props: {
+				location: props.ssrLocation,
+				context: props.ssrContext,
+			},
+		};
+	} else if (utils.isWeb) {
+		return {
+			component: BrowserRouter,
+			props: {},
+		};
+	} else {
+		return {
+			component: MemoryRouter,
+			props: {},
+		};
+	}
+}
