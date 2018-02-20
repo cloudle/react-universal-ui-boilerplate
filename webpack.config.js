@@ -67,7 +67,6 @@ module.exports = {
 		rules: [
 			{
 				test: /\.js?$/,
-				exclude: /node_modules|packages/, // <- comment this if you want hot-reload node_modules
 				loader: 'babel-loader',
 				options: {
 					cacheDirectory: true,
