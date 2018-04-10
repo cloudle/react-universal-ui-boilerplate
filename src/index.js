@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Platform } from 'react-native';
-import { connect, utils, ContextProvider, Button } from 'react-universal-ui';
+import { utils, RuuiProvider, Button, Tooltip } from 'react-universal-ui';
+import { connect, Provider } from 'react-redux';
 
 import { store } from './store';
 import * as appActions from './store/action/app';
@@ -42,6 +43,8 @@ class App extends Component {
 			<Button
 				wrapperStyle={styles.buttonWrapper}
 				title={`Increase counter [${this.props.counter}]`}
+				tooltip="Increase counter.."
+				tooltipDirection="top"
 				onPress={this.increaseCounter}/>
 		</View>;
 	}
@@ -52,9 +55,13 @@ class App extends Component {
 }
 
 export default function AppContainer(props) {
-	return <ContextProvider store={store}>
-		<App/>
-	</ContextProvider>;
+	return <RuuiProvider>
+		<Provider store={store}>
+			<App/>
+		</Provider>
+
+		<Tooltip/>
+	</RuuiProvider>;
 }
 
 const styles = StyleSheet.create({
@@ -72,10 +79,6 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		color: '#333333',
 		marginBottom: 5,
-	},
-	counterButton: {
-		backgroundColor: '#00bcd4',
-		marginTop: 10,
 	},
 	buttonWrapper: {
 		backgroundColor: '#00bcd4',

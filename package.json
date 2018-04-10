@@ -32,8 +32,8 @@
     "react-dom": "^16.2.0",
     "react-native": "0.52.2",
     "react-native-drawer": "^2.3.0",
-    "react-native-web": "^0.3.4",
-    "react-universal-ui": "^0.1.78",
+    "react-native-web": "^0.5.4",
+    "react-universal-ui": "^0.2.14",
     "universal-vector-icons": "^4.4.1"
   },
   "devDependencies": {

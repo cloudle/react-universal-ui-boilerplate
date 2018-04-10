@@ -4887,7 +4887,7 @@ lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.6, lodash@^4.17.2, l
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
-lodash@^4.13.1, lodash@^4.17.4:
+lodash@^4.13.1, lodash@^4.17.4, lodash@^4.17.5:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
@@ -6085,9 +6085,9 @@ react-native-drawer@^2.5.0:
     prop-types "^15.5.8"
     tween-functions "^1.0.1"
 
-react-native-web@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.3.4.tgz#b73a483f3c37a37ed832903e02d9c3c96f3ea109"
+react-native-web@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.5.4.tgz#a1146548e95df241f3eba9666745ea8948404e78"
   dependencies:
     array-find-index "^1.0.2"
     create-react-class "^15.6.2"
@@ -6203,10 +6203,11 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react-universal-ui@^0.1.78:
-  version "0.1.78"
-  resolved "https://registry.yarnpkg.com/react-universal-ui/-/react-universal-ui-0.1.78.tgz#db4fec8f26d0cc912c666c2c044bcc38591f3a07"
+react-universal-ui@^0.2.14:
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/react-universal-ui/-/react-universal-ui-0.2.14.tgz#ead5cf03b49cf4a70c5f14fbbec5550d1a97a503"
   dependencies:
+    lodash "^4.17.5"
     react-native-drawer "^2.5.0"
     react-redux "^5.0.6"
     redux "^3.7.2"
